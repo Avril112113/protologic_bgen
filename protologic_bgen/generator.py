@@ -42,7 +42,8 @@ class Generator:
 			common_args = {
 				"bindings": self.bindings,
 				"config": config,
-				"retype": self.__template_retype(config)
+				"retype": self.__template_retype(config),
+				"desc2comment": self.__template_desc2comment
 			}
 
 			# Process group file
@@ -86,3 +87,9 @@ class Generator:
 				wasm_type = wasm_type.type.name
 			return config["WasmType"].get(wasm_type)
 		return retype
+
+	@classmethod
+	def __template_desc2comment(cls, description: str, comment: str):
+		if description is None:
+			return comment
+		return comment + description.strip().replace("\n", f"\n{comment}")

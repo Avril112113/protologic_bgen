@@ -1,4 +1,5 @@
 // DO NOT MODIFY, THIS FILE IS GENERATED //
+// VERSION 0.0.1 //
 
 
 #pragma once
@@ -6,8 +7,12 @@
 #include "_import.h"
 
 
+// All functions related to "doing" stuff.
+
+
 PL_IMPORT(ship_self_destruct, void);
 
+// Set the torque for the ship to rotate.
 PL_IMPORT(wheel_set_torque, void, float x, float y, float z);
 
 PL_IMPORT(runninglight_set_state, void, int32_t state);

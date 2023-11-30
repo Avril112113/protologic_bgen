@@ -11,12 +11,14 @@ class BindingsFunctionResult:
 
 	name: str
 	type: WasmType
+	description: str | None
 
 	@classmethod
 	def fromJson(cls, data: dict):
 		return cls(
 			name=data["name"],
 			type=WasmType(data["type"]),
+			description=data.get("description", None),
 		)
 
 
@@ -28,12 +30,14 @@ class BindingsFunctionArg:
 
 	name: str
 	type: WasmType
+	description: str | None
 
 	@classmethod
 	def fromJson(cls, data: dict):
 		return cls(
 			name=data["name"],
 			type=WasmType(data["type"]),
+			description=data.get("description", None),
 		)
 
 
@@ -44,6 +48,7 @@ class BindingsFunction:
 	"""
 
 	name: str
+	description: str|None
 	args: list[BindingsFunctionArg]
 	results: list[BindingsFunctionResult]
 
@@ -51,6 +56,7 @@ class BindingsFunction:
 	def fromJson(cls, name: str, data: dict):
 		return cls(
 			name=name,
+			description=data.get("description", None),
 			args=[BindingsFunctionArg.fromJson(arg) for arg in data["args"]] if "args" in data else [],
 			results=[BindingsFunctionResult.fromJson(arg) for arg in data["results"]] if "results" in data else []
 		)
@@ -72,14 +78,16 @@ class BindingsGroup:
 	A collection of BindingsFunction
 	"""
 
+	description: str | None
 	name: str
 	functions: dict[str, BindingsFunction]
 
 	@classmethod
 	def fromJson(cls, name: str, data: dict):
 		return cls(
+			description=data.get("description", None),
 			name=name,
-			functions={name: BindingsFunction.fromJson(name, function) for name, function in data.items()}
+			functions={name: BindingsFunction.fromJson(name, function) for name, function in data["functions"].items()}
 		)
 
 	def __iter__(self):
@@ -96,11 +104,13 @@ class Bindings:
 	A collection of BindingsGroup
 	"""
 
+	version: str
 	groups: dict[str, BindingsGroup]
 
 	@classmethod
 	def fromJson(cls, data: dict):
 		return cls(
+			version=data["version"],
 			groups={name: BindingsGroup.fromJson(name, group) for name, group in data["groups"].items()}
 		)
 
