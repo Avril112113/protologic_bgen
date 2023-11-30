@@ -3,9 +3,9 @@
 
 // Generated lua library utilising the generated C bindings.
 
-#include "lua_protologic.h"
+#include "lua_protologic.hpp"
 
-#include "protologic/protologic.h"
+#include "protologic/protologic.hpp"
 
 
 
