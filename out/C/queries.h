@@ -41,7 +41,7 @@ PL_IMPORT(engine_get_fuel_capacity, float);
 
 PL_IMPORT(engine_get_throttle, float);
 
-PL_IMPORT(radar_get_target_count, float);
+PL_IMPORT(radar_get_target_count, int32_t);
 
 PL_IMPORT(radar_get_target_distance, float, int32_t index);
 

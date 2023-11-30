@@ -192,12 +192,12 @@
 				},
 				"gun0_set_elevation": {
 					"args": [
-						{ "name": "elevation", "type": "i32" }
+						{ "name": "elevation", "type": "f32" }
 					]
 				},
 				"gun0_set_fuse": {
 					"args": [
-						{ "name": "fuse", "type": "i32" }
+						{ "name": "fuse", "type": "f32" }
 					]
 				},
 				"gun0_trigger": {
@@ -209,12 +209,12 @@
 				},
 				"gun1_set_elevation": {
 					"args": [
-						{ "name": "elevation", "type": "i32" }
+						{ "name": "elevation", "type": "f32" }
 					]
 				},
 				"gun1_set_fuse": {
 					"args": [
-						{ "name": "fuse", "type": "i32" }
+						{ "name": "fuse", "type": "f32" }
 					]
 				},
 				"gun1_trigger": {
@@ -226,12 +226,12 @@
 				},
 				"gun2_set_elevation": {
 					"args": [
-						{ "name": "elevation", "type": "i32" }
+						{ "name": "elevation", "type": "f32" }
 					]
 				},
 				"gun2_set_fuse": {
 					"args": [
-						{ "name": "fuse", "type": "i32" }
+						{ "name": "fuse", "type": "f32" }
 					]
 				},
 				"gun2_trigger": {
@@ -243,12 +243,12 @@
 				},
 				"gun3_set_elevation": {
 					"args": [
-						{ "name": "elevation", "type": "i32" }
+						{ "name": "elevation", "type": "f32" }
 					]
 				},
 				"gun3_set_fuse": {
 					"args": [
-						{ "name": "fuse", "type": "i32" }
+						{ "name": "fuse", "type": "f32" }
 					]
 				},
 				"gun3_trigger": {
@@ -344,7 +344,7 @@
 				},
 				"radar_get_target_count": {
 					"results": [
-						{ "name": "count", "type": "f32" }
+						{ "name": "count", "type": "i32" }
 					]
 				},
 				"radar_get_target_distance": {

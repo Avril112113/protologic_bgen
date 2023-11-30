@@ -23,33 +23,33 @@ extern
 
 	pub fn gun0_set_bearing(bearing: f32);
 
-	pub fn gun0_set_elevation(elevation: i32);
+	pub fn gun0_set_elevation(elevation: f32);
 
-	pub fn gun0_set_fuse(fuse: i32);
+	pub fn gun0_set_fuse(fuse: f32);
 
 	pub fn gun0_trigger();
 
 	pub fn gun1_set_bearing(bearing: f32);
 
-	pub fn gun1_set_elevation(elevation: i32);
+	pub fn gun1_set_elevation(elevation: f32);
 
-	pub fn gun1_set_fuse(fuse: i32);
+	pub fn gun1_set_fuse(fuse: f32);
 
 	pub fn gun1_trigger();
 
 	pub fn gun2_set_bearing(bearing: f32);
 
-	pub fn gun2_set_elevation(elevation: i32);
+	pub fn gun2_set_elevation(elevation: f32);
 
-	pub fn gun2_set_fuse(fuse: i32);
+	pub fn gun2_set_fuse(fuse: f32);
 
 	pub fn gun2_trigger();
 
 	pub fn gun3_set_bearing(bearing: f32);
 
-	pub fn gun3_set_elevation(elevation: i32);
+	pub fn gun3_set_elevation(elevation: f32);
 
-	pub fn gun3_set_fuse(fuse: i32);
+	pub fn gun3_set_fuse(fuse: f32);
 
 	pub fn gun3_trigger();
 

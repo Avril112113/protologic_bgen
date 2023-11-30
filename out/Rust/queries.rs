@@ -38,7 +38,7 @@ extern
 
 	pub fn engine_get_throttle() -> f32;
 
-	pub fn radar_get_target_count() -> f32;
+	pub fn radar_get_target_count() -> i32;
 
 	pub fn radar_get_target_distance(index: i32) -> f32;
 

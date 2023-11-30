@@ -78,14 +78,15 @@ class Generator:
 
 	@classmethod
 	def __template_retype(cls, config: _TemplateConfig):
-		def retype(wasm_type: BindingsFunctionArg|BindingsFunctionResult|WasmType|str|None):
+		# noinspection PyTypedDict
+		def retype(wasm_type: BindingsFunctionArg|BindingsFunctionResult|WasmType|str|None, config_entry="WasmType"):
 			if wasm_type is None:
-				return config["WasmType"].get("NONE", "")
+				return config[config_entry].get("NONE", "")
 			if isinstance(wasm_type, WasmType):
 				wasm_type = wasm_type.name
 			elif isinstance(wasm_type, BindingsFunctionArg) or isinstance(wasm_type, BindingsFunctionResult):
 				wasm_type = wasm_type.type.name
-			return config["WasmType"].get(wasm_type)
+			return config[config_entry].get(wasm_type)
 		return retype
 
 	@classmethod
