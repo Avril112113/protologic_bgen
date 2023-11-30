@@ -2,91 +2,149 @@
 	"groups": {
 		"constants": {
 			"const_get_fueldensity": {
-				"result": "f32"
+				"results": [
+					{ "name": "density", "type": "f32" }
+				]
 			},
 			"const_get_spaceshipthrust": {
-				"result": "f32"
+				"results": [
+					{ "name": "thrust", "type": "f32" }
+				]
 			},
 			"const_get_spaceshipfuelconsumption": {
-				"result": "f32"
+				"results": [
+					{ "name": "consumption", "type": "f32" }
+				]
 			},
 			"const_get_missilethrust": {
-				"result": "f32"
+				"results": [
+					{ "name": "thrust", "type": "f32" }
+				]
 			},
 			"const_get_missilefuelconsumption": {
-				"result": "f32"
+				"results": [
+					{ "name": "consumption", "type": "f32" }
+				]
 			},
 			"const_get_turretminelevation": {
-				"result": "f32"
+				"results": [
+					{ "name": "min_elevation", "type": "f32" }
+				]
 			},
 			"const_get_turretmaxelevation": {
-				"result": "f32"
+				"results": [
+					{ "name": "max_elevation", "type": "f32" }
+				]
 			},
 			"const_get_turretelevationspeed": {
-				"result": "f32"
+				"results": [
+					{ "name": "elevation_speed", "type": "f32" }
+				]
 			},
 			"const_get_turretbearingspeed": {
-				"result": "f32"
+				"results": [
+					{ "name": "bearing_speed", "type": "f32" }
+				]
 			},
 			"const_get_turretminfuse": {
-				"result": "f32"
+				"results": [
+					{ "name": "min_fuse", "type": "f32" }
+				]
 			},
 			"const_get_turretmaxfuse": {
-				"result": "f32"
+				"results": [
+					{ "name": "max_fuse", "type": "f32" }
+				]
 			},
 			"const_get_turretshellspeed": {
-				"result": "f32"
+				"results": [
+					{ "name": "shell_speed", "type": "f32" }
+				]
 			},
 			"const_get_turretrefiretime": {
-				"result": "f32"
+				"results": [
+					{ "name": "refire_time", "type": "f32" }
+				]
 			},
 			"const_get_missileradarminrange": {
-				"result": "f32"
+				"results": [
+					{ "name": "min_range", "type": "f32" }
+				]
 			},
 			"const_get_missileradarmaxrange": {
-				"result": "f32"
+				"results": [
+					{ "name": "max_range", "type": "f32" }
+				]
 			},
 			"const_get_missileradarminangle": {
-				"result": "f32"
+				"results": [
+					{ "name": "min_angle", "type": "f32" }
+				]
 			},
 			"const_get_missileradarmaxangle": {
-				"result": "f32"
+				"results": [
+					{ "name": "max_angle", "type": "f32" }
+				]
 			},
 			"const_get_shipradarminangle": {
-				"result": "f32"
+				"results": [
+					{ "name": "min_angle", "type": "f32" }
+				]
 			},
 			"const_get_shipradarmaxangle": {
-				"result": "f32"
+				"results": [
+					{ "name": "max_angle", "type": "f32" }
+				]
 			},
 			"const_get_missilerefiretime": {
-				"result": "f32"
+				"results": [
+					{ "name": "refire_time", "type": "f32" }
+				]
 			},
 			"const_get_shipbasemass": {
-				"result": "f32"
+				"results": [
+					{ "name": "mass", "type": "f32" }
+				]
 			},
 			"const_get_missilebasemass": {
-				"result": "f32"
+				"results": [
+					{ "name": "mass", "type": "f32" }
+				]
 			},
 			"const_get_missilewheeltorque": {
-				"result": "f32"
+				"results": [
+					{ "name": "torque", "type": "f32" }
+				]
 			},
 			"const_get_shipwheeltorque": {
-				"result": "f32"
+				"results": [
+					{ "name": "torque", "type": "f32" }
+				]
 			},
 			"const_get_shipradius": {
-				"result": "f32"
+				"results": [
+					{ "name": "radius", "type": "f32" }
+				]
 			},
 			"const_get_missileradius": {
-				"result": "f32"
+				"results": [
+					{ "name": "radius", "type": "f32" }
+				]
 			},
 			"const_get_shipmaxcpufuel": {
-				"result": "i64"
+				"results": [
+					{ "name": "cpufuel", "type": "i64" }
+				]
 			},
 			"const_get_shipmincpufuel": {
-				"result": "i64"
+				"results": [
+					{ "name": "cpufuel", "type": "i64" }
+				]
 			},
 			"const_get_shippertickcpufuel": {
-				"result": "i64"
+				"results": [
+					{ "name": "cpufuel", "type": "i64" }
+				]
 			}
 		},
 		"actions": {
@@ -192,106 +250,170 @@
 		},
 		"queries": {
 			"cpu_get_fuel": {
-				"result": "i64"
+				"results": [
+					{ "name": "fuel", "type": "i64" }
+				]
 			},
 			"ship_get_position_x": {
-				"result": "f32"
+				"results": [
+					{ "name": "x", "type": "f32" }
+				]
 			},
 			"ship_get_position_y": {
-				"result": "f32"
+				"results": [
+					{ "name": "y", "type": "f32" }
+				]
 			},
 			"ship_get_position_z": {
-				"result": "f32"
+				"results": [
+					{ "name": "z", "type": "f32" }
+				]
 			},
 			"ship_get_velocity_x": {
-				"result": "f32"
+				"results": [
+					{ "name": "x", "type": "f32" }
+				]
 			},
 			"ship_get_velocity_y": {
-				"result": "f32"
+				"results": [
+					{ "name": "y", "type": "f32" }
+				]
 			},
 			"ship_get_velocity_z": {
-				"result": "f32"
+				"results": [
+					{ "name": "z", "type": "f32" }
+				]
 			},
 			"ship_get_orientation_w": {
-				"result": "f32"
+				"results": [
+					{ "name": "w", "type": "f32" }
+				]
 			},
 			"ship_get_orientation_x": {
-				"result": "f32"
+				"results": [
+					{ "name": "x", "type": "f32" }
+				]
 			},
 			"ship_get_orientation_y": {
-				"result": "f32"
+				"results": [
+					{ "name": "y", "type": "f32" }
+				]
 			},
 			"ship_get_orientation_z": {
-				"result": "f32"
+				"results": [
+					{ "name": "z", "type": "f32" }
+				]
 			},
 			"ship_get_angularvelocity_x": {
-				"result": "f32"
+				"results": [
+					{ "name": "x", "type": "f32" }
+				]
 			},
 			"ship_get_angularvelocity_y": {
-				"result": "f32"
+				"results": [
+					{ "name": "y", "type": "f32" }
+				]
 			},
 			"ship_get_angularvelocity_z": {
-				"result": "f32"
+				"results": [
+					{ "name": "z", "type": "f32" }
+				]
 			},
 			"engine_get_fuel_amount": {
-				"result": "f32"
+				"results": [
+					{ "name": "fuel", "type": "f32" }
+				]
 			},
 			"engine_get_fuel_capacity": {
-				"result": "f32"
+				"results": [
+					{ "name": "capacity", "type": "f32" }
+				]
 			},
 			"engine_get_throttle": {
-				"result": "f32"
+				"results": [
+					{ "name": "throttle", "type": "f32" }
+				]
 			},
 			"radar_get_target_count": {
-				"result": "f32"
+				"results": [
+					{ "name": "count", "type": "f32" }
+				]
 			},
 			"radar_get_target_distance": {
 				"args": [
 					{ "name": "index", "type": "i32" }
 				],
-				"result": "f32"
+				"results": [
+					{ "name": "distance", "type": "f32" }
+				]
 			},
 			"radar_get_target_type": {
 				"args": [
 					{ "name": "index", "type": "i32" }
 				],
-				"result": "i32"
+				"results": [
+					{ "name": "type", "type": "i32" }
+				]
 			},
 			"gun0_get_bearing": {
-				"result": "f32"
+				"results": [
+					{ "name": "bearing", "type": "f32" }
+				]
 			},
 			"gun0_get_elevation": {
-				"result": "f32"
+				"results": [
+					{ "name": "elevation", "type": "f32" }
+				]
 			},
 			"gun0_get_refiretime": {
-				"result": "f32"
+				"results": [
+					{ "name": "refire_time", "type": "f32" }
+				]
 			},
 			"gun1_get_bearing": {
-				"result": "f32"
+				"results": [
+					{ "name": "bearing", "type": "f32" }
+				]
 			},
 			"gun1_get_elevation": {
-				"result": "f32"
+				"results": [
+					{ "name": "elevation", "type": "f32" }
+				]
 			},
 			"gun1_get_refiretime": {
-				"result": "f32"
+				"results": [
+					{ "name": "refire_time", "type": "f32" }
+				]
 			},
 			"gun2_get_bearing": {
-				"result": "f32"
+				"results": [
+					{ "name": "bearing", "type": "f32" }
+				]
 			},
 			"gun2_get_elevation": {
-				"result": "f32"
+				"results": [
+					{ "name": "elevation", "type": "f32" }
+				]
 			},
 			"gun2_get_refiretime": {
-				"result": "f32"
+				"results": [
+					{ "name": "refire_time", "type": "f32" }
+				]
 			},
 			"gun3_get_bearing": {
-				"result": "f32"
+				"results": [
+					{ "name": "bearing", "type": "f32" }
+				]
 			},
 			"gun3_get_elevation": {
-				"result": "f32"
+				"results": [
+					{ "name": "elevation", "type": "f32" }
+				]
 			},
 			"gun3_get_refiretime": {
-				"result": "f32"
+				"results": [
+					{ "name": "refire_time", "type": "f32" }
+				]
 			}
 		}
 	}

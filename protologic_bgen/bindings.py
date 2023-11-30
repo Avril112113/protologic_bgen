@@ -4,6 +4,23 @@ from .wasm_type import WasmType
 
 
 @dataclass(init=True)
+class BindingsFunctionResult:
+	"""
+	A wasm exported function result.
+	"""
+
+	name: str
+	type: WasmType
+
+	@classmethod
+	def fromJson(cls, data: dict):
+		return cls(
+			name=data["name"],
+			type=WasmType(data["type"]),
+		)
+
+
+@dataclass(init=True)
 class BindingsFunctionArg:
 	"""
 	A wasm exported function argument.
@@ -28,20 +45,25 @@ class BindingsFunction:
 
 	name: str
 	args: list[BindingsFunctionArg]
-	result: WasmType
+	results: list[BindingsFunctionResult]
 
 	@classmethod
 	def fromJson(cls, name: str, data: dict):
 		return cls(
 			name=name,
 			args=[BindingsFunctionArg.fromJson(arg) for arg in data["args"]] if "args" in data else [],
-			result=WasmType(data.get("result", None))
+			results=[BindingsFunctionResult.fromJson(arg) for arg in data["results"]] if "results" in data else []
 		)
 
 	def getArg(self, index: int, default=None):
 		if index < 0 or index >= len(self.args):
 			return default
 		return self.args[index]
+
+	def getResult(self, index: int, default=None):
+		if index < 0 or index >= len(self.results):
+			return default
+		return self.results[index]
 
 
 @dataclass(init=True)
