@@ -8,6 +8,8 @@ extern
 {
 	pub fn ship_self_destruct();
 
+	pub fn engine_set_throttle(throttle: f32);
+
 	// Set the torque for the ship to rotate.
 	pub fn wheel_set_torque(x: f32, y: f32, z: f32);
 

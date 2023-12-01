@@ -155,6 +155,11 @@
 			"functions": {
 				"ship_self_destruct": {
 				},
+				"engine_set_throttle": {
+					"args": [
+						{ "name": "throttle", "type": "f32" }
+					]
+				},
 				"wheel_set_torque": {
 					"description": "Set the torque for the ship to rotate.",
 					"args": [

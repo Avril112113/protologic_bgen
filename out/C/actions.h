@@ -12,6 +12,8 @@
 
 PL_IMPORT(ship_self_destruct, void);
 
+PL_IMPORT(engine_set_throttle, void, float throttle);
+
 // Set the torque for the ship to rotate.
 PL_IMPORT(wheel_set_torque, void, float x, float y, float z);
 

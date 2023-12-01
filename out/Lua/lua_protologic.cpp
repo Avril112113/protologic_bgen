@@ -195,6 +195,13 @@ static int lua_protologiclib_ship_self_destruct(lua_State* state) {
 	return 0;
 }
 
+static int lua_protologiclib_engine_set_throttle(lua_State* state) {
+	float arg_throttle = luaL_checknumber(state, 1);
+	engine_set_throttle(arg_throttle);
+	
+	return 0;
+}
+
 static int lua_protologiclib_wheel_set_torque(lua_State* state) {
 	float arg_x = luaL_checknumber(state, 1);
 	float arg_y = luaL_checknumber(state, 2);
@@ -614,6 +621,8 @@ static const struct luaL_Reg lua_protologiclib [] = {
 	// actions //
 
 	{"ship_self_destruct", lua_protologiclib_ship_self_destruct},
+
+	{"engine_set_throttle", lua_protologiclib_engine_set_throttle},
 
 	{"wheel_set_torque", lua_protologiclib_wheel_set_torque},
 
