@@ -12,11 +12,15 @@ extern
 
 	pub fn ship_get_position_z() -> f32;
 
+	pub fn ship_get_position_ptr(dst: i32);
+
 	pub fn ship_get_velocity_x() -> f32;
 
 	pub fn ship_get_velocity_y() -> f32;
 
 	pub fn ship_get_velocity_z() -> f32;
+
+	pub fn ship_get_velocity_ptr(dst: i32);
 
 	pub fn ship_get_orientation_w() -> f32;
 
@@ -26,11 +30,15 @@ extern
 
 	pub fn ship_get_orientation_z() -> f32;
 
+	pub fn ship_get_orientation_ptr(dst: i32);
+
 	pub fn ship_get_angularvelocity_x() -> f32;
 
 	pub fn ship_get_angularvelocity_y() -> f32;
 
 	pub fn ship_get_angularvelocity_z() -> f32;
+
+	pub fn ship_get_angularvelocity_ptr(dst: i32);
 
 	pub fn engine_get_fuel_amount() -> f32;
 

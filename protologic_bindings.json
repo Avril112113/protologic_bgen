@@ -282,6 +282,11 @@
 						{ "name": "z", "type": "f32" }
 					]
 				},
+				"ship_get_position_ptr": {
+					"args": [
+						{ "name": "dst", "type": "i32" }
+					]
+				},
 				"ship_get_velocity_x": {
 					"results": [
 						{ "name": "x", "type": "f32" }
@@ -295,6 +300,11 @@
 				"ship_get_velocity_z": {
 					"results": [
 						{ "name": "z", "type": "f32" }
+					]
+				},
+				"ship_get_velocity_ptr": {
+					"args": [
+						{ "name": "dst", "type": "i32" }
 					]
 				},
 				"ship_get_orientation_w": {
@@ -317,6 +327,11 @@
 						{ "name": "z", "type": "f32" }
 					]
 				},
+				"ship_get_orientation_ptr": {
+					"args": [
+						{ "name": "dst", "type": "i32" }
+					]
+				},
 				"ship_get_angularvelocity_x": {
 					"results": [
 						{ "name": "x", "type": "f32" }
@@ -330,6 +345,11 @@
 				"ship_get_angularvelocity_z": {
 					"results": [
 						{ "name": "z", "type": "f32" }
+					]
+				},
+				"ship_get_angularvelocity_ptr": {
+					"args": [
+						{ "name": "dst", "type": "i32" }
 					]
 				},
 				"engine_get_fuel_amount": {

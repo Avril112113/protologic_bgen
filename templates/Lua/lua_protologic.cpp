@@ -10,7 +10,7 @@
 
 {% for group in bindings %}
 // {{ group.name }} //
-{% for function in group %}
+{% for function in group if "_ptr" not in function.name %}
 static int lua_protologiclib_{{function.name}}(lua_State* state) {
 	{%- for i in range(len(function.args)) %}{% set arg=function.args[i] %}
 	{{retype(arg, "WasmType_c")}} arg_{{arg.name}} = {{retype(arg, "WasmType_lua_c")}}(state, {{i+1}});
@@ -28,7 +28,7 @@ static int lua_protologiclib_{{function.name}}(lua_State* state) {
 static const struct luaL_Reg lua_protologiclib [] = {
 {% for group in bindings %}
 	// {{ group.name }} //
-{% for function in group %}
+{% for function in group if "_ptr" not in function.name %}
 	{"{{function.name}}", lua_protologiclib_{{function.name}}},
 {% endfor %}
 {% endfor %}
