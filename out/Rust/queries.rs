@@ -52,6 +52,8 @@ extern
 
 	pub fn radar_get_target_type(index: i32) -> i32;
 
+	pub fn radar_get_target_id(index: i32) -> i64;
+
 	pub fn gun0_get_bearing() -> f32;
 
 	pub fn gun0_get_elevation() -> f32;

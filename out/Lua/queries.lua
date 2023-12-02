@@ -24,6 +24,7 @@
 ---@field radar_get_target_count fun(): number
 ---@field radar_get_target_distance fun(index: number): number
 ---@field radar_get_target_type fun(index: number): number
+---@field radar_get_target_id fun(index: number): number
 ---@field gun0_get_bearing fun(): number
 ---@field gun0_get_elevation fun(): number
 ---@field gun0_get_refiretime fun(): number

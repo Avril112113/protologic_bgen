@@ -388,6 +388,14 @@
 						{ "name": "type", "type": "i32" }
 					]
 				},
+				"radar_get_target_id": {
+					"args": [
+						{ "name": "index", "type": "i32" }
+					],
+					"results": [
+						{ "name": "id", "type": "i64" }
+					]
+				},
 				"gun0_get_bearing": {
 					"results": [
 						{ "name": "bearing", "type": "f32" }

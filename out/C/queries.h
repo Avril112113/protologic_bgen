@@ -55,6 +55,8 @@ PL_IMPORT(radar_get_target_distance, float, int32_t index);
 
 PL_IMPORT(radar_get_target_type, int32_t, int32_t index);
 
+PL_IMPORT(radar_get_target_id, int64_t, int32_t index);
+
 PL_IMPORT(gun0_get_bearing, float);
 
 PL_IMPORT(gun0_get_elevation, float);

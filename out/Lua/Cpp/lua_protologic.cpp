@@ -479,6 +479,13 @@ static int lua_protologiclib_radar_get_target_type(lua_State* state) {
 	return 1;
 }
 
+static int lua_protologiclib_radar_get_target_id(lua_State* state) {
+	int32_t arg_index = luaL_checkinteger(state, 1);
+	int64_t result = radar_get_target_id(arg_index);
+	lua_pushinteger(state, result);
+	return 1;
+}
+
 static int lua_protologiclib_gun0_get_bearing(lua_State* state) {
 	float result = gun0_get_bearing();
 	lua_pushnumber(state, result);
@@ -710,6 +717,8 @@ static const struct luaL_Reg lua_protologiclib [] = {
 	{"radar_get_target_distance", lua_protologiclib_radar_get_target_distance},
 
 	{"radar_get_target_type", lua_protologiclib_radar_get_target_type},
+
+	{"radar_get_target_id", lua_protologiclib_radar_get_target_id},
 
 	{"gun0_get_bearing", lua_protologiclib_gun0_get_bearing},
 
