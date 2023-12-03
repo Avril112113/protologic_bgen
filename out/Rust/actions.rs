@@ -1,8 +1,8 @@
 // DO NOT MODIFY, THIS FILE IS GENERATED //
-// VERSION 0.0.1 //
+// VERSION 0.0.2 //
 
 
-// All functions related to "doing" stuff.
+/// All functions related to "doing" stuff.
 #[link(wasm_import_module = "protologic")]
 extern
 {
@@ -10,7 +10,7 @@ extern
 
 	pub fn engine_set_throttle(throttle: f32);
 
-	// Set the torque for the ship to rotate.
+	/// Set the torque for the ship to rotate.
 	pub fn wheel_set_torque(x: f32, y: f32, z: f32);
 
 	pub fn runninglight_set_state(state: i32);

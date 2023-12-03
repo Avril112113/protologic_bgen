@@ -1,5 +1,5 @@
 -- DO NOT MODIFY, THIS FILE IS GENERATED --
--- VERSION 0.0.1 --
+-- VERSION 0.0.2 --
 ---@meta
 
 
@@ -11,10 +11,10 @@
 ---@field ship_get_velocity_x fun(): number
 ---@field ship_get_velocity_y fun(): number
 ---@field ship_get_velocity_z fun(): number
----@field ship_get_orientation_w fun(): number
 ---@field ship_get_orientation_x fun(): number
 ---@field ship_get_orientation_y fun(): number
 ---@field ship_get_orientation_z fun(): number
+---@field ship_get_orientation_w fun(): number
 ---@field ship_get_angularvelocity_x fun(): number
 ---@field ship_get_angularvelocity_y fun(): number
 ---@field ship_get_angularvelocity_z fun(): number

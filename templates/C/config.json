@@ -1,4 +1,5 @@
 {
+	"retype_structs": true,
 	"WasmType": {
 		"NONE": "void",
 		"i32": "int32_t",

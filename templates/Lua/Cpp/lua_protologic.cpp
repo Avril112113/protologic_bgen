@@ -8,31 +8,30 @@
 #include "protologic/protologic.hpp"
 
 
-{% for group in bindings %}
+{% for group in bindings if "wasi" not in group.module %}
 // {{ group.name }} //
-{% for function in group if "_ptr" not in function.name %}
+{% for function in group if not function.hasPtrArg() %}
 static int lua_protologiclib_{{function.name}}(lua_State* state) {
 	{%- for i in range(len(function.args)) %}{% set arg=function.args[i] %}
-	{{retype(arg, "WasmType_c")}} arg_{{arg.name}} = {{retype(arg, "WasmType_lua_c")}}(state, {{i+1}});
+	{{ retype(arg, "WasmType_c") }} arg_{{ arg.name }} = {{ retype(arg, "WasmType_lua_c") }}(state, {{i+1}});
 	{%- endfor %}
-	{% if len(function.results) > 0 -%}{{retype(function.getResult(0), "WasmType_c")}} result = {% endif -%}
-	{{function.name}}({%- for i in range(len(function.args)) %}{% set arg=function.args[i] %}{{", " if i != 0 else ""}}arg_{{arg.name}}{%- endfor %});
-	{% if len(function.results) > 0 -%}{{retype(function.getResult(0), "WasmType_c_lua")}}(state, result);{%- endif %}
+	{% if len(function.results) > 0 -%}{{ retype(function.getResult(0), "WasmType_c") }} result = {% endif -%}
+	{{ function.name }}({%- for i in range(len(function.args)) %}{% set arg=function.args[i] %}{{ ", " if i != 0 else "" }}arg_{{ arg.name }}{%- endfor %});
+	{% if len(function.results) > 0 -%}{{ retype(function.getResult(0), "WasmType_c_lua") }}(state, result);{%- endif %}
 	return {{1 if len(function.results) > 0 else 0}};
 }
 {% endfor %}
-
 {% endfor %}
-
 
 static const struct luaL_Reg lua_protologiclib [] = {
-{% for group in bindings %}
+{%- for group in bindings if "wasi" not in group.module %}
 	// {{ group.name }} //
-{% for function in group if "_ptr" not in function.name %}
+{%- for function in group if "_ptr" not in function.name %}
 	{"{{function.name}}", lua_protologiclib_{{function.name}}},
+{%- endfor -%}
 {% endfor %}
-{% endfor %}
-	{NULL, NULL}  /* sentinel */
+	/* sentinel */
+	{NULL, NULL}
 };
 
 

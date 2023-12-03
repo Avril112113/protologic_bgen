@@ -1,5 +1,5 @@
 // DO NOT MODIFY, THIS FILE IS GENERATED //
-// VERSION 0.0.1 //
+// VERSION 0.0.2 //
 
 #[link(wasm_import_module = "protologic")]
 extern

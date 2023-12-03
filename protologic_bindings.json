@@ -1,7 +1,33 @@
 {
-	"version": "0.0.1",
+	"version": "0.0.2",
+	"structs": {
+		"Vector3": {
+			"fields": [
+				{ "name": "x", "type": "f32" },
+				{ "name": "y", "type": "f32" },
+				{ "name": "z", "type": "f32" }
+			]
+		},
+		"Quaternion": {
+			"fields": [
+				{ "name": "x", "type": "f32" },
+				{ "name": "y", "type": "f32" },
+				{ "name": "z", "type": "f32" },
+				{ "name": "w", "type": "f32" }
+			]
+		},
+		"RadarTargetInfo": {
+			"description": "Target info.",
+			"fields": [
+				{ "name": "id", "type": "i64", "default": -1 },
+				{ "name": "type", "type": "i32", "default": -1 },
+				{ "name": "distance", "type": "f32", "default": -1 }
+			]
+		}
+	},
 	"groups": {
 		"constants": {
+			"module": "protologic",
 			"functions": {
 				"const_get_fueldensity": {
 					"results": [
@@ -152,6 +178,7 @@
 		},
 		"actions": {
 			"description": "All functions related to \"doing\" stuff.",
+			"module": "protologic",
 			"functions": {
 				"ship_self_destruct": {
 				},
@@ -261,6 +288,7 @@
 			}
 		},
 		"queries": {
+			"module": "protologic",
 			"functions": {
 				"cpu_get_fuel": {
 					"results": [
@@ -284,7 +312,7 @@
 				},
 				"ship_get_position_ptr": {
 					"args": [
-						{ "name": "dst", "type": "i32" }
+						{ "name": "dst", "type": "i32", "ptr": "Vector3" }
 					]
 				},
 				"ship_get_velocity_x": {
@@ -304,12 +332,7 @@
 				},
 				"ship_get_velocity_ptr": {
 					"args": [
-						{ "name": "dst", "type": "i32" }
-					]
-				},
-				"ship_get_orientation_w": {
-					"results": [
-						{ "name": "w", "type": "f32" }
+						{ "name": "dst", "type": "i32", "ptr": "Vector3" }
 					]
 				},
 				"ship_get_orientation_x": {
@@ -327,9 +350,14 @@
 						{ "name": "z", "type": "f32" }
 					]
 				},
+				"ship_get_orientation_w": {
+					"results": [
+						{ "name": "w", "type": "f32" }
+					]
+				},
 				"ship_get_orientation_ptr": {
 					"args": [
-						{ "name": "dst", "type": "i32" }
+						{ "name": "dst", "type": "i32", "ptr": "Vector3" }
 					]
 				},
 				"ship_get_angularvelocity_x": {
@@ -349,7 +377,7 @@
 				},
 				"ship_get_angularvelocity_ptr": {
 					"args": [
-						{ "name": "dst", "type": "i32" }
+						{ "name": "dst", "type": "i32", "ptr": "Vector3" }
 					]
 				},
 				"engine_get_fuel_amount": {
@@ -394,6 +422,18 @@
 					],
 					"results": [
 						{ "name": "id", "type": "i64" }
+					]
+				},
+				"radar_get_target_info": {
+					"args": [
+						{ "name": "index", "type": "i32" },
+						{ "name": "ptr", "type": "i32", "ptr": "RadarTargetInfo" }
+					]
+				},
+				"radar_get_target_list": {
+					"args": [
+						{ "name": "ptr", "type": "i32", "ptr": "RadarTargetInfo" },
+						{ "name": "len", "type": "i32" }
 					]
 				},
 				"gun0_get_bearing": {
@@ -454,6 +494,16 @@
 				"gun3_get_refiretime": {
 					"results": [
 						{ "name": "refire_time", "type": "f32" }
+					]
+				}
+			}
+		},
+		"wasi": {
+			"module": "wasi_snapshot_preview1",
+			"functions": {
+				"sched_yield": {
+					"results": [
+						{ "name": "status", "type": "i32" }
 					]
 				}
 			}
