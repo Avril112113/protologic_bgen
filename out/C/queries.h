@@ -9,6 +9,9 @@
 #include "RadarTargetInfo.h"
 
 
+// queries.h
+
+
 WASM_IMPORT("protologic", "cpu_get_fuel", cpu_get_fuel, int64_t);
 
 WASM_IMPORT("protologic", "ship_get_position_x", ship_get_position_x, float);
@@ -86,3 +89,4 @@ WASM_IMPORT("protologic", "gun3_get_bearing", gun3_get_bearing, float);
 WASM_IMPORT("protologic", "gun3_get_elevation", gun3_get_elevation, float);
 
 WASM_IMPORT("protologic", "gun3_get_refiretime", gun3_get_refiretime, float);
+

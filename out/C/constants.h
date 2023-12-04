@@ -7,6 +7,9 @@
 #include "_import.h"
 
 
+// constants.h
+
+
 WASM_IMPORT("protologic", "const_get_fueldensity", const_get_fueldensity, float);
 
 WASM_IMPORT("protologic", "const_get_spaceshipthrust", const_get_spaceshipthrust, float);
@@ -64,3 +67,4 @@ WASM_IMPORT("protologic", "const_get_shipmaxcpufuel", const_get_shipmaxcpufuel, 
 WASM_IMPORT("protologic", "const_get_shipmincpufuel", const_get_shipmincpufuel, int64_t);
 
 WASM_IMPORT("protologic", "const_get_shippertickcpufuel", const_get_shippertickcpufuel, int64_t);
+

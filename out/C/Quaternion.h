@@ -6,6 +6,7 @@
 
 #include "_import.h"
 
+
 typedef struct _Quaternion {
 	float x;
 	float y;

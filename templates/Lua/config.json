@@ -1,5 +1,4 @@
 {
-	"retype_structs": true,
 	"WasmType": {
 		"NONE": "nil",
 		"i32": "number",

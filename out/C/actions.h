@@ -7,6 +7,7 @@
 #include "_import.h"
 
 
+// actions.h
 // All functions related to "doing" stuff.
 
 
@@ -58,3 +59,4 @@ WASM_IMPORT("protologic", "gun3_set_elevation", gun3_set_elevation, void, float 
 WASM_IMPORT("protologic", "gun3_set_fuse", gun3_set_fuse, void, float fuse);
 
 WASM_IMPORT("protologic", "gun3_trigger", gun3_trigger, void);
+

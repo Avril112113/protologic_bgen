@@ -8,8 +8,6 @@
 
 
 // Target info.
-
-// Target info.
 typedef struct _RadarTargetInfo {
 	int64_t id;
 	int32_t type;

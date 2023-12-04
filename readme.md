@@ -2,7 +2,7 @@
 Un-official protologic bindings generator.
 
 ### Supports
-Rust - [Protologic/Protologic.rs](https://github.com/Protologic/Protologic.rs) (Not used by this repo yet?)  
+~~Rust - [Protologic/Protologic.rs](https://github.com/Protologic/Protologic.rs) (Not used by this repo yet?)~~  
 Lua - [Avril112113/protologic-lua](https://github.com/Avril112113/protologic-lua)  
 C/C++ - [Avril112113/???](https://github.com/Avril112113/) (Repo not yet available)  
 TODO: AssemblyScript - [1Solon/???](https://github.com/1Solon) (Repo not yet available, Not used by this repo yet?)  

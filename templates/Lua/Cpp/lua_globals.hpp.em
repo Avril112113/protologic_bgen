@@ -1,5 +1,5 @@
 // DO NOT MODIFY, THIS FILE IS GENERATED //
-// VERSION 0.0.2 //
+// VERSION @(bindings.version) //
 
 
 #pragma once
@@ -8,4 +8,4 @@
 #include "lua.hpp"
 
 
-int luaopen_protologic(lua_State *state);
+void lua_protologic_set_globals(lua_State* state);

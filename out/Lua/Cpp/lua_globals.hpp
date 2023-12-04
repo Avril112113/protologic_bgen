@@ -8,4 +8,4 @@
 #include "lua.hpp"
 
 
-int luaopen_protologic(lua_State *state);
+void lua_protologic_set_globals(lua_State* state);
