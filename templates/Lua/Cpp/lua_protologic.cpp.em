@@ -9,11 +9,11 @@
 
 
 @[ for group in bindings ]@
-@[ if "wasi" in group.module ] @[ continue ] @[ end if ]@
+@[ if "wasi" in group.module ]@[ continue ]@[ end if ]@
 // @(group.name) //
 
 @[ for function in group ]@
-@[ if function.hasPtrArg() ] @[ continue ] @[ end if ]@
+@[ if function.hasPtrArg() ]@[ continue ]@[ end if ]@
 static int lua_protologiclib_@(function.name)(lua_State* state) {
 @[ for i in range(len(function.args)) ]@
 @{ arg = function.args[i] }@

@@ -6,7 +6,7 @@
 
 
 @[ for function in bindings["constants"] ]@
-@[ if len(function.results) != 1 ] @[ continue ] @[ end if ]@
+@[ if len(function.results) != 1 ]@[ continue ]@[ end if ]@
 ---@@type @(retype(function.results[0]))
 @(function.name.replace('const_get_', '').upper()) = nil
 

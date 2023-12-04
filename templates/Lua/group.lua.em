@@ -9,7 +9,7 @@
 
 ---@@class ProtoLogic
 @[ for function in group ]@
-@[ if function.hasPtrArg() ] @[ continue ] @[ end if ]@
+@[ if function.hasPtrArg() ]@[ continue ]@[ end if ]@
 @[ if function.description ]@
 @( desc2comment(function.description, "--- ") )
 @[ end if ]@

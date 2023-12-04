@@ -352,7 +352,7 @@ static int lua_protologiclib_ship_get_position_z(lua_State* state) {
 	return 1;
 }
 
- static int lua_protologiclib_ship_get_velocity_x(lua_State* state) {
+static int lua_protologiclib_ship_get_velocity_x(lua_State* state) {
 	float result = ship_get_velocity_x();
 	lua_pushnumber(state, result);
 	return 1;
@@ -370,7 +370,7 @@ static int lua_protologiclib_ship_get_velocity_z(lua_State* state) {
 	return 1;
 }
 
- static int lua_protologiclib_ship_get_orientation_x(lua_State* state) {
+static int lua_protologiclib_ship_get_orientation_x(lua_State* state) {
 	float result = ship_get_orientation_x();
 	lua_pushnumber(state, result);
 	return 1;
@@ -394,7 +394,7 @@ static int lua_protologiclib_ship_get_orientation_w(lua_State* state) {
 	return 1;
 }
 
- static int lua_protologiclib_ship_get_angularvelocity_x(lua_State* state) {
+static int lua_protologiclib_ship_get_angularvelocity_x(lua_State* state) {
 	float result = ship_get_angularvelocity_x();
 	lua_pushnumber(state, result);
 	return 1;
@@ -412,7 +412,7 @@ static int lua_protologiclib_ship_get_angularvelocity_z(lua_State* state) {
 	return 1;
 }
 
- static int lua_protologiclib_engine_get_fuel_amount(lua_State* state) {
+static int lua_protologiclib_engine_get_fuel_amount(lua_State* state) {
 	float result = engine_get_fuel_amount();
 	lua_pushnumber(state, result);
 	return 1;
@@ -457,7 +457,7 @@ static int lua_protologiclib_radar_get_target_id(lua_State* state) {
 	return 1;
 }
 
-  static int lua_protologiclib_gun0_get_bearing(lua_State* state) {
+static int lua_protologiclib_gun0_get_bearing(lua_State* state) {
 	float result = gun0_get_bearing();
 	lua_pushnumber(state, result);
 	return 1;
@@ -529,7 +529,7 @@ static int lua_protologiclib_gun3_get_refiretime(lua_State* state) {
 	return 1;
 }
 
- 
+
 
 
 static const struct luaL_Reg lua_protologiclib [] = {
