@@ -19,15 +19,15 @@ static int lua_protologiclib_@(function.name)(lua_State* state) {
 @{ arg = function.args[i] }@
 	@(retype(arg, "WasmType_c")) arg_@(arg.name) = @(retype(arg, "WasmType_lua_c"))(state, @(i+1));
 @[ end for ]@
-@[ if len(function.results) > 0 ]@
-	@(retype(function.getResult(0), "WasmType_c")) result = @
-@[ end if ]@
-	@(function.name)(@
+	@[ if len(function.results) > 0 ]@
+@	@(retype(function.getResult(0), "WasmType_c")) result = @
+@	@[ end if ]@
+@(function.name)(@
 @[ for i in range(len(function.args)) ]@
-	@{ arg = function.args[i] }@
-	@(", " if i != 0 else "")arg_@(arg.name)@
+@{ arg = function.args[i] }@
+@(", " if i != 0 else "")arg_@(arg.name)@
 @[ end for ]@
-	);
+);
 @[ if len(function.results) > 0 ]@
 	@(retype(function.getResult(0), "WasmType_c_lua"))(state, result);
 @[ end if ]@
