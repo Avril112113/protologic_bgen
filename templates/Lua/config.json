@@ -1,8 +1,8 @@
 {
 	"WasmType": {
 		"NONE": "nil",
-		"i32": "number",
-		"i64": "number",
+		"i32": "integer",
+		"i64": "integer",
 		"f32": "number",
 		"f64": "number"
 	},

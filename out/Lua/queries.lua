@@ -1,11 +1,11 @@
 
 
 -- DO NOT MODIFY, THIS FILE IS GENERATED --
--- VERSION 0.0.2 --
+-- VERSION 0.0.3 --
 ---@meta
 
 ---@class ProtoLogic
----@field cpu_get_fuel fun(): number
+---@field cpu_get_fuel fun(): integer
 ---@field ship_get_position_x fun(): number
 ---@field ship_get_position_y fun(): number
 ---@field ship_get_position_z fun(): number
@@ -22,10 +22,10 @@
 ---@field engine_get_fuel_amount fun(): number
 ---@field engine_get_fuel_capacity fun(): number
 ---@field engine_get_throttle fun(): number
----@field radar_get_target_count fun(): number
----@field radar_get_target_distance fun(index: number): number
----@field radar_get_target_type fun(index: number): number
----@field radar_get_target_id fun(index: number): number
+---@field radar_get_target_count fun(): integer
+---@field radar_get_target_distance fun(index: integer): number
+---@field radar_get_target_type fun(index: integer): integer
+---@field radar_get_target_id fun(index: integer): integer
 ---@field gun0_get_bearing fun(): number
 ---@field gun0_get_elevation fun(): number
 ---@field gun0_get_refiretime fun(): number
