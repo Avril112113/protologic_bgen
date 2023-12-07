@@ -77,13 +77,13 @@ class GeneratorTemplate:
 
 		variables: dict = {
 			"skip": setSkip,
+			**extra_variables,
+			**self.template_globals,
 		}
-		variables.update(self.template_globals)
-		variables.update(extra_variables)
 		with open(file, "r") as f:
 			data = f.read()
-		with em.Interpreter(config=self.template_config) as interp:
-			result = interp.expand(data, name=file, locals=variables)
+		with em.Interpreter(config=self.template_config, globals=variables) as interp:
+			result = interp.expand(data, name=file)
 		if skip:
 			return
 		if not os.path.exists(os.path.dirname(out)):
@@ -105,11 +105,12 @@ class GeneratorTemplate:
 			bdef = bdef.name
 		elif isinstance(bdef, BindingsDef):
 			if struct and bdef.ptr is not None:
-				return bdef.ptr.name
-			bdef = bdef.type.name
+				return self._template_retype(bdef.ptr, config_entry, struct)
+			else:
+				bdef = bdef.type.name
 		elif isinstance(bdef, BindingsStruct):
-			return bdef.name
-		return self.config[config_entry].get(bdef)
+			return self.config[config_entry].get("<STRUCT_PREFIX>", "") + bdef.name
+		return self.config[config_entry].get(bdef, bdef)
 
 	@classmethod
 	def _template_getdefault(cls, bdef: BindingsDef):

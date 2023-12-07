@@ -1,5 +1,5 @@
-@{ if struct.name in config["struct_as_multi_return"]: skip() }
-
+@{ if struct.name in config["struct_as_multi_return"]: skip() }@
+@
 -- DO NOT MODIFY, THIS FILE IS GENERATED --
 -- VERSION @(bindings.version) --
 ---@@meta

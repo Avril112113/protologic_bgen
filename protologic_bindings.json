@@ -381,7 +381,7 @@
 				},
 				"ship_get_orientation_ptr": {
 					"args": [
-						{ "name": "dst", "type": "i32", "ptr": "Vector3" }
+						{ "name": "dst", "type": "i32", "ptr": "Quaternion" }
 					]
 				},
 				"ship_get_angularvelocity_x": {
