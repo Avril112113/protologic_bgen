@@ -20,7 +20,7 @@
 
 @[ for function in group ]@
 @[ if function.deprecated is not None ]@[ continue ]@[ end if ]@
-@[ if function.hasPtrArg() and len(function.args) > 1 ]@[ continue ]@[ end if ]@
+@[ if function.hasPtrCountArg() ]@[ continue ]@[ end if ]@
 static int lua_protologiclib_@(function.name)(lua_State* state) {
 @[ for i in range(len(function.args)) ]@
 @{ arg = function.args[i] }@
@@ -40,12 +40,20 @@ static int lua_protologiclib_@(function.name)(lua_State* state) {
 @[ end for ]@
 );
 @{ ptrArgs = filter(lambda arg: arg.ptr is not None, function.args) }@
-@{ ptrReturns = list(map(lambda arg: (arg.name, (*arg.ptr.fields.values(),)) if arg.ptr.name in config.get("struct_as_multi_return") else (arg.name, (arg.ptr,)), ptrArgs)) }@
-@[ for argName, ptrRets in ptrReturns ]@
+@{ ptrReturns = list(map(lambda arg: (arg, (*arg.ptr.fields.values(),)) if arg.ptr.name in config.get("struct_as_multi_return") else (arg, (arg.ptr,)), ptrArgs)) }@
+@[ for arg, ptrRets in ptrReturns ]@
+@	@[ if arg.ptr.name in config["struct_as_multi_return"] ]@
 @[ for ptrRet in ptrRets ]@
-	@(retype(ptrRet, "WasmType_c_lua"))(state, arg_@(argName)->@(ptrRet.name));
+	@(retype(ptrRet, "WasmType_c_lua"))(state, arg_@(arg.name)->@(ptrRet.name));
 @[ end for ]@
-	delete arg_@(argName);
+@	@[else]@
+	lua_newtable(state);
+@[ for ptrRet in arg.ptr.fields.values() ]@
+	@(retype(ptrRet, "WasmType_c_lua"))(state, arg_@(arg.name)->@(ptrRet.name));
+	lua_setfield(state, -2, "@(ptrRet.name)");
+@[ end for ]@
+@	@[ end if ]@
+	delete arg_@(arg.name);
 @[ end for ]@
 @[ if len(function.results) > 0 ]@
 	@(retype(function.getResult(0), "WasmType_c_lua"))(state, result);
@@ -64,7 +72,7 @@ static const struct luaL_Reg lua_protologiclib [] = {
 	// {{ group.name }} //
 @[ for function in group ]@
 @[ if function.deprecated is not None ]@[ continue ]@[ end if ]@
-@[ if function.hasPtrArg() and len(function.args) > 1 ]@[ continue ]@[ end if ]@
+@[ if function.hasPtrCountArg() ]@[ continue ]@[ end if ]@
 	{"@(function.name)", lua_protologiclib_@(function.name)},
 @[ end for ]@
 @[ end for ]@

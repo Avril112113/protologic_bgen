@@ -26,11 +26,14 @@
 			]
 		},
 		"RadarContactInfo": {
-			"description": "Target info.",
+			"description": "Contact info.",
 			"fields": [
 				{ "name": "id", "type": "i64", "default": -1 },
 				{ "name": "type", "type": "i32", "default": -1 },
-				{ "name": "distance", "type": "f32", "default": -1 }
+				{ "name": "signal_strength", "type": "f32", "default": -1 },
+				{ "name": "x", "type": "f32" },
+				{ "name": "y", "type": "f32" },
+				{ "name": "z", "type": "f32" }
 			]
 		}
 	},
@@ -471,7 +474,7 @@
 				"radar_get_target_list": {
 					"deprecated": "Use `radar_get_contact_list`",
 					"args": [
-						{ "name": "ptr", "type": "i32", "ptr": "RadarTargetInfo" },
+						{ "name": "ptr", "type": "i32", "ptr": "RadarTargetInfo", "ptrCount": "len" },
 						{ "name": "len", "type": "i32" }
 					]
 				},
@@ -547,7 +550,7 @@
 				},
 				"radar_get_contact_list": {
 					"args": [
-						{ "name": "ptr", "type": "i32", "ptr": "RadarContactInfo" },
+						{ "name": "ptr", "type": "i32", "ptr": "RadarContactInfo", "ptrCount": "len" },
 						{ "name": "len", "type": "i32" }
 					]
 				},

@@ -14,6 +14,7 @@ class BindingsDef:
 	name: str
 	type: WasmType
 	ptr: "BindingsStruct | None"
+	ptrCount: "str | None"
 	default: int | float | None
 	description: str | None
 
@@ -24,6 +25,7 @@ class BindingsDef:
 			name=data["name"],
 			type=WasmType(data["type"]),
 			ptr=_bindings.structs[data["ptr"]] if "ptr" in data else None,
+			ptrCount=data.get("ptrCount", None),
 			default=data.get("default", None),
 			description=data.get("description", None),
 		)
@@ -82,6 +84,9 @@ class BindingsFunction:
 
 	def hasPtrArg(self):
 		return any(arg.ptr is not None for arg in self.args)
+
+	def hasPtrCountArg(self):
+		return any(arg.ptrCount is not None for arg in self.args)
 
 
 @dataclass(init=True)
