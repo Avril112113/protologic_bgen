@@ -20,6 +20,7 @@
 @[ if function.description ]@
 @( desc2comment(function.description, "// ") )
 @[ end if ]@
+@[ if function.deprecated is not None ][[deprecated]] @[ end if ]@
 WASM_IMPORT(@
 "@(group.module)", @
 "@(function.name)", @

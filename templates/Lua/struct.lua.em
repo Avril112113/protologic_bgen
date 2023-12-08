@@ -1,4 +1,5 @@
 @{ if struct.name in config["struct_as_multi_return"]: skip() }@
+@{ if struct.deprecated is not None: skip() }@
 @
 -- DO NOT MODIFY, THIS FILE IS GENERATED --
 -- VERSION @(bindings.version) --

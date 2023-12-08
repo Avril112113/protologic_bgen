@@ -9,6 +9,7 @@
 
 ---@@class ProtoLogic
 @[ for function in group ]@
+@[ if function.deprecated is not None ]@[ continue ]@[ end if ]@
 @[ if function.hasPtrArg() and len(function.args) > 1 ]@[ continue ]@[ end if ]@
 @[ if function.description ]@
 @( desc2comment(function.description, "--- ") )

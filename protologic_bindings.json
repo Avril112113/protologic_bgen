@@ -1,5 +1,5 @@
 {
-	"version": "0.0.3",
+	"version": "0.1.0",
 	"structs": {
 		"Vector3": {
 			"fields": [
@@ -17,6 +17,15 @@
 			]
 		},
 		"RadarTargetInfo": {
+			"deprecated": "Use `RadarContactInfo`",
+			"description": "Target info.",
+			"fields": [
+				{ "name": "id", "type": "i64", "default": -1 },
+				{ "name": "type", "type": "i32", "default": -1 },
+				{ "name": "distance", "type": "f32", "default": -1 }
+			]
+		},
+		"RadarContactInfo": {
 			"description": "Target info.",
 			"fields": [
 				{ "name": "id", "type": "i64", "default": -1 },
@@ -420,11 +429,13 @@
 					]
 				},
 				"radar_get_target_count": {
+					"deprecated": "Use `radar_get_contact_count`",
 					"results": [
 						{ "name": "count", "type": "i32" }
 					]
 				},
 				"radar_get_target_distance": {
+					"deprecated": "Use `radar_get_contact_position`",
 					"args": [
 						{ "name": "index", "type": "i32" }
 					],
@@ -433,6 +444,7 @@
 					]
 				},
 				"radar_get_target_type": {
+					"deprecated": "Use `radar_get_contact_type`",
 					"args": [
 						{ "name": "index", "type": "i32" }
 					],
@@ -441,6 +453,7 @@
 					]
 				},
 				"radar_get_target_id": {
+					"deprecated": "Use `radar_get_contact_id`",
 					"args": [
 						{ "name": "index", "type": "i32" }
 					],
@@ -449,14 +462,92 @@
 					]
 				},
 				"radar_get_target_info": {
+					"deprecated": "Use `radar_get_contact_info`",
 					"args": [
 						{ "name": "index", "type": "i32" },
 						{ "name": "ptr", "type": "i32", "ptr": "RadarTargetInfo" }
 					]
 				},
 				"radar_get_target_list": {
+					"deprecated": "Use `radar_get_contact_list`",
 					"args": [
 						{ "name": "ptr", "type": "i32", "ptr": "RadarTargetInfo" },
+						{ "name": "len", "type": "i32" }
+					]
+				},
+				"radar_get_noise": {
+					"results": [
+						{ "name": "noise", "type": "f32" }
+					]
+				},
+				"radar_get_contact_count": {
+					"results": [
+						{ "name": "count", "type": "i32" }
+					]
+				},
+				"radar_get_contact_type": {
+					"args": [
+						{ "name": "index", "type": "i32" }
+					],
+					"results": [
+						{ "name": "id", "type": "i32" }
+					]
+				},
+				"radar_get_contact_id": {
+					"args": [
+						{ "name": "index", "type": "i32" }
+					],
+					"results": [
+						{ "name": "id", "type": "i64" }
+					]
+				},
+				"radar_get_contact_strength": {
+					"args": [
+						{ "name": "index", "type": "i32" }
+					],
+					"results": [
+						{ "name": "strength", "type": "f32" }
+					]
+				},
+				"radar_get_contact_position_x": {
+					"args": [
+						{ "name": "index", "type": "i32" }
+					],
+					"results": [
+						{ "name": "x", "type": "f32" }
+					]
+				},
+				"radar_get_contact_position_y": {
+					"args": [
+						{ "name": "index", "type": "i32" }
+					],
+					"results": [
+						{ "name": "y", "type": "f32" }
+					]
+				},
+				"radar_get_contact_position_z": {
+					"args": [
+						{ "name": "index", "type": "i32" }
+					],
+					"results": [
+						{ "name": "z", "type": "f32" }
+					]
+				},
+				"radar_get_contact_position_ptr": {
+					"args": [
+						{ "name": "index", "type": "i32" },
+						{ "name": "dst", "type": "i32", "ptr": "Vector3" }
+					]
+				},
+				"radar_get_contact_info": {
+					"args": [
+						{ "name": "index", "type": "i32" },
+						{ "name": "dst", "type": "i32", "ptr": "RadarContactInfo" }
+					]
+				},
+				"radar_get_contact_list": {
+					"args": [
+						{ "name": "ptr", "type": "i32", "ptr": "RadarContactInfo" },
 						{ "name": "len", "type": "i32" }
 					]
 				},

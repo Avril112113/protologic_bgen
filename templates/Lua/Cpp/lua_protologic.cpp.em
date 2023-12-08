@@ -19,6 +19,7 @@
 // @(group.name) //
 
 @[ for function in group ]@
+@[ if function.deprecated is not None ]@[ continue ]@[ end if ]@
 @[ if function.hasPtrArg() and len(function.args) > 1 ]@[ continue ]@[ end if ]@
 static int lua_protologiclib_@(function.name)(lua_State* state) {
 @[ for i in range(len(function.args)) ]@
@@ -62,6 +63,7 @@ static const struct luaL_Reg lua_protologiclib [] = {
 @[ if "wasi" in group.module ] @[ continue ] @[ end if ]@
 	// {{ group.name }} //
 @[ for function in group ]@
+@[ if function.deprecated is not None ]@[ continue ]@[ end if ]@
 @[ if function.hasPtrArg() and len(function.args) > 1 ]@[ continue ]@[ end if ]@
 	{"@(function.name)", lua_protologiclib_@(function.name)},
 @[ end for ]@

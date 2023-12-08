@@ -44,6 +44,7 @@ class BindingsFunction:
 
 	_bindings: "Bindings"
 	name: str
+	deprecated: str | None
 	description: str | None
 	args: list[BindingsDef]
 	results: list[BindingsDef]
@@ -53,6 +54,7 @@ class BindingsFunction:
 		return cls(
 			_bindings=_bindings,
 			name=name,
+			deprecated=data.get("deprecated", None),
 			description=data.get("description", None),
 			args=[BindingsDef.fromJson(_bindings, arg) for arg in data["args"]] if "args" in data else [],
 			results=[BindingsDef.fromJson(_bindings, result) for result in data["results"]] if "results" in data else []
@@ -68,7 +70,7 @@ class BindingsFunction:
 			return default
 		return self.results[index]
 
-	def getUsedStructs(self) -> list["BindingsStruct"]:
+	def getUsedStructs(self, deprecated=True) -> list["BindingsStruct"]:
 		structs = []
 		for arg in self.args:
 			if arg.ptr is not None and arg.ptr not in structs:
@@ -125,6 +127,7 @@ class BindingsStruct:
 
 	_bindings: "Bindings"
 	name: str
+	deprecated: str | None
 	description: str | None
 	fields: OrderedDict[str, BindingsDef]
 
@@ -133,6 +136,7 @@ class BindingsStruct:
 		return cls(
 			_bindings=_bindings,
 			name=name,
+			deprecated=data.get("deprecated", None),
 			description=data.get("description", None),
 			fields=OrderedDict((field["name"], BindingsDef.fromJson(_bindings, field)) for field in data["fields"])
 		)
