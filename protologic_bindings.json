@@ -1,5 +1,5 @@
 {
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"structs": {
 		"Vector3": {
 			"fields": [
@@ -246,6 +246,11 @@
 				},
 				"gun0_trigger": {
 				},
+				"gun0_reload": {
+					"args": [
+						{ "name": "ammo", "type": "i32" }
+					]
+				},
 				"gun1_set_bearing": {
 					"args": [
 						{ "name": "bearing", "type": "f32" }
@@ -262,6 +267,11 @@
 					]
 				},
 				"gun1_trigger": {
+				},
+				"gun1_reload": {
+					"args": [
+						{ "name": "ammo", "type": "i32" }
+					]
 				},
 				"gun2_set_bearing": {
 					"args": [
@@ -280,6 +290,11 @@
 				},
 				"gun2_trigger": {
 				},
+				"gun2_reload": {
+					"args": [
+						{ "name": "ammo", "type": "i32" }
+					]
+				},
 				"gun3_set_bearing": {
 					"args": [
 						{ "name": "bearing", "type": "f32" }
@@ -296,6 +311,11 @@
 					]
 				},
 				"gun3_trigger": {
+				},
+				"gun3_reload": {
+					"args": [
+						{ "name": "ammo", "type": "i32" }
+					]
 				},
 				"debug_sphere_set": {
 					"args": [
@@ -569,6 +589,26 @@
 						{ "name": "refire_time", "type": "f32" }
 					]
 				},
+				"gun0_get_magazine_capacity": {
+					"results": [
+						{ "name": "capacity", "type": "i32" }
+					]
+				},
+				"gun0_get_magazine_remaining": {
+					"results": [
+						{ "name": "remaining", "type": "i32" }
+					]
+				},
+				"gun0_get_magazine_type": {
+					"results": [
+						{ "name": "type", "type": "i32" }
+					]
+				},
+				"gun0_get_magazine_reloadtime": {
+					"results": [
+						{ "name": "time", "type": "f32" }
+					]
+				},
 				"gun1_get_bearing": {
 					"results": [
 						{ "name": "bearing", "type": "f32" }
@@ -582,6 +622,26 @@
 				"gun1_get_refiretime": {
 					"results": [
 						{ "name": "refire_time", "type": "f32" }
+					]
+				},
+				"gun1_get_magazine_capacity": {
+					"results": [
+						{ "name": "capacity", "type": "i32" }
+					]
+				},
+				"gun1_get_magazine_remaining": {
+					"results": [
+						{ "name": "remaining", "type": "i32" }
+					]
+				},
+				"gun1_get_magazine_type": {
+					"results": [
+						{ "name": "type", "type": "i32" }
+					]
+				},
+				"gun1_get_magazine_reloadtime": {
+					"results": [
+						{ "name": "time", "type": "f32" }
 					]
 				},
 				"gun2_get_bearing": {
@@ -599,6 +659,26 @@
 						{ "name": "refire_time", "type": "f32" }
 					]
 				},
+				"gun2_get_magazine_capacity": {
+					"results": [
+						{ "name": "capacity", "type": "i32" }
+					]
+				},
+				"gun2_get_magazine_remaining": {
+					"results": [
+						{ "name": "remaining", "type": "i32" }
+					]
+				},
+				"gun2_get_magazine_type": {
+					"results": [
+						{ "name": "type", "type": "i32" }
+					]
+				},
+				"gun2_get_magazine_reloadtime": {
+					"results": [
+						{ "name": "time", "type": "f32" }
+					]
+				},
 				"gun3_get_bearing": {
 					"results": [
 						{ "name": "bearing", "type": "f32" }
@@ -612,6 +692,26 @@
 				"gun3_get_refiretime": {
 					"results": [
 						{ "name": "refire_time", "type": "f32" }
+					]
+				},
+				"gun3_get_magazine_capacity": {
+					"results": [
+						{ "name": "capacity", "type": "i32" }
+					]
+				},
+				"gun3_get_magazine_remaining": {
+					"results": [
+						{ "name": "remaining", "type": "i32" }
+					]
+				},
+				"gun3_get_magazine_type": {
+					"results": [
+						{ "name": "type", "type": "i32" }
+					]
+				},
+				"gun3_get_magazine_reloadtime": {
+					"results": [
+						{ "name": "time", "type": "f32" }
 					]
 				}
 			}
