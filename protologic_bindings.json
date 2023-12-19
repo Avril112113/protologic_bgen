@@ -56,16 +56,6 @@
 						{ "name": "consumption", "type": "f32" }
 					]
 				},
-				"const_get_missilethrust": {
-					"results": [
-						{ "name": "thrust", "type": "f32" }
-					]
-				},
-				"const_get_missilefuelconsumption": {
-					"results": [
-						{ "name": "consumption", "type": "f32" }
-					]
-				},
 				"const_get_turretminelevation": {
 					"results": [
 						{ "name": "min_elevation", "type": "f32" }

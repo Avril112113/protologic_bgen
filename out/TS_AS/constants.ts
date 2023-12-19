@@ -37,26 +37,6 @@ export function const_get_spaceshipfuelconsumption(): f32 {
 }
 
 // @ts-ignore
-@external("protologic", "const_get_missilethrust")
-declare function _internal_const_get_missilethrust(): f32;
-
-/**
- */
-export function const_get_missilethrust(): f32 {
-	return _internal_const_get_missilethrust();
-}
-
-// @ts-ignore
-@external("protologic", "const_get_missilefuelconsumption")
-declare function _internal_const_get_missilefuelconsumption(): f32;
-
-/**
- */
-export function const_get_missilefuelconsumption(): f32 {
-	return _internal_const_get_missilefuelconsumption();
-}
-
-// @ts-ignore
 @external("protologic", "const_get_turretminelevation")
 declare function _internal_const_get_turretminelevation(): f32;
 
