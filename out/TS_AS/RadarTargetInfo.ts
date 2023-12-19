@@ -5,7 +5,6 @@
  * @deprecated
  * Target info.
  */
-@unmanaged
 export class RadarTargetInfo {
 	id: i64 = -1;
 	type: i32 = -1;

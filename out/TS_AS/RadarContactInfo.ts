@@ -4,7 +4,6 @@
 /**
  * Contact info.
  */
-@unmanaged
 export class RadarContactInfo {
 	id: i64 = -1;
 	type: i32 = -1;

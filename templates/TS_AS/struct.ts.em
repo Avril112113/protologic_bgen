@@ -9,7 +9,6 @@
 @( desc2comment(struct.description, " * ") )
 @[ end if ]@
  */
-@@unmanaged
 export class @(struct.name) {
 @	@[ for field in struct ]@
 	@(field.name): @(retype(field)) = @(getDefault(field));

@@ -3,7 +3,6 @@
 
 /**
  */
-@unmanaged
 export class Vector3 {
 	x: f32 = 0;
 	y: f32 = 0;
