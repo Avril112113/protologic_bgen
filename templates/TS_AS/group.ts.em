@@ -1,15 +1,19 @@
 // DO NOT MODIFY, THIS FILE IS GENERATED //
 // VERSION @(bindings.version) //
 
+@# TODO: Deal with duplicate includes due to same struct used in differenat groups
+@[ for struct in group.getUsedStructs() ]@
+import {@(struct.name)} from "./@(struct.name)";
+@[ end for ]@
 
-// @( group.name ).h
+
+// @( group.name ).ts
 @[ if group.description ]@
 @( desc2comment(group.description, "// ") )
 @[ end if ]@
 
 
 @[ for function in group ]@
-@[ if function.hasPtrArg() ]@[ continue ]@[ end if ]@
 // @@ts-ignore
 @@external("@(group.module)", "@(function.name)")
 declare function _internal_@(function.name)(@
@@ -20,7 +24,8 @@ declare function _internal_@(function.name)(@
 ): @(retype(function.getResult(0)));
 
 /**
-@[ if function.deprecated is not None ] * @@deprecated
+@[ if function.deprecated is not None ]@
+ * @@deprecated
 @[ end if ]@
 @[ if function.description ]@
 @( desc2comment(function.description, " * ") )

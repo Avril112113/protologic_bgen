@@ -2,7 +2,8 @@
 // VERSION 0.2.0 //
 
 
-// constants.h
+
+// constants.ts
 
 
 // @ts-ignore

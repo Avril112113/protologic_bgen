@@ -2,7 +2,8 @@
 // VERSION 0.2.0 //
 
 
-// actions.h
+
+// actions.ts
 // All functions related to "doing" stuff.
 
 

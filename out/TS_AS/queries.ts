@@ -1,8 +1,13 @@
 // DO NOT MODIFY, THIS FILE IS GENERATED //
 // VERSION 0.2.0 //
 
+import {Vector3} from "./Vector3";
+import {Quaternion} from "./Quaternion";
+import {RadarTargetInfo} from "./RadarTargetInfo";
+import {RadarContactInfo} from "./RadarContactInfo";
 
-// queries.h
+
+// queries.ts
 
 
 // @ts-ignore
@@ -46,6 +51,16 @@ export function ship_get_position_z(): f32 {
 }
 
 // @ts-ignore
+@external("protologic", "ship_get_position_ptr")
+declare function _internal_ship_get_position_ptr(dst: Vector3): void;
+
+/**
+ */
+export function ship_get_position_ptr(dst: Vector3): void {
+	return _internal_ship_get_position_ptr(dst);
+}
+
+// @ts-ignore
 @external("protologic", "ship_get_velocity_x")
 declare function _internal_ship_get_velocity_x(): f32;
 
@@ -73,6 +88,16 @@ declare function _internal_ship_get_velocity_z(): f32;
  */
 export function ship_get_velocity_z(): f32 {
 	return _internal_ship_get_velocity_z();
+}
+
+// @ts-ignore
+@external("protologic", "ship_get_velocity_ptr")
+declare function _internal_ship_get_velocity_ptr(dst: Vector3): void;
+
+/**
+ */
+export function ship_get_velocity_ptr(dst: Vector3): void {
+	return _internal_ship_get_velocity_ptr(dst);
 }
 
 // @ts-ignore
@@ -116,6 +141,16 @@ export function ship_get_orientation_w(): f32 {
 }
 
 // @ts-ignore
+@external("protologic", "ship_get_orientation_ptr")
+declare function _internal_ship_get_orientation_ptr(dst: Quaternion): void;
+
+/**
+ */
+export function ship_get_orientation_ptr(dst: Quaternion): void {
+	return _internal_ship_get_orientation_ptr(dst);
+}
+
+// @ts-ignore
 @external("protologic", "ship_get_angularvelocity_x")
 declare function _internal_ship_get_angularvelocity_x(): f32;
 
@@ -143,6 +178,16 @@ declare function _internal_ship_get_angularvelocity_z(): f32;
  */
 export function ship_get_angularvelocity_z(): f32 {
 	return _internal_ship_get_angularvelocity_z();
+}
+
+// @ts-ignore
+@external("protologic", "ship_get_angularvelocity_ptr")
+declare function _internal_ship_get_angularvelocity_ptr(dst: Vector3): void;
+
+/**
+ */
+export function ship_get_angularvelocity_ptr(dst: Vector3): void {
+	return _internal_ship_get_angularvelocity_ptr(dst);
 }
 
 // @ts-ignore
@@ -217,6 +262,28 @@ declare function _internal_radar_get_target_id(index: i32): i64;
  */
 export function radar_get_target_id(index: i32): i64 {
 	return _internal_radar_get_target_id(index);
+}
+
+// @ts-ignore
+@external("protologic", "radar_get_target_info")
+declare function _internal_radar_get_target_info(index: i32, ptr: RadarTargetInfo): void;
+
+/**
+ * @deprecated
+ */
+export function radar_get_target_info(index: i32, ptr: RadarTargetInfo): void {
+	return _internal_radar_get_target_info(index, ptr);
+}
+
+// @ts-ignore
+@external("protologic", "radar_get_target_list")
+declare function _internal_radar_get_target_list(ptr: RadarTargetInfo, len: i32): void;
+
+/**
+ * @deprecated
+ */
+export function radar_get_target_list(ptr: RadarTargetInfo, len: i32): void {
+	return _internal_radar_get_target_list(ptr, len);
 }
 
 // @ts-ignore
@@ -297,6 +364,36 @@ declare function _internal_radar_get_contact_position_z(index: i32): f32;
  */
 export function radar_get_contact_position_z(index: i32): f32 {
 	return _internal_radar_get_contact_position_z(index);
+}
+
+// @ts-ignore
+@external("protologic", "radar_get_contact_position_ptr")
+declare function _internal_radar_get_contact_position_ptr(index: i32, dst: Vector3): void;
+
+/**
+ */
+export function radar_get_contact_position_ptr(index: i32, dst: Vector3): void {
+	return _internal_radar_get_contact_position_ptr(index, dst);
+}
+
+// @ts-ignore
+@external("protologic", "radar_get_contact_info")
+declare function _internal_radar_get_contact_info(index: i32, dst: RadarContactInfo): void;
+
+/**
+ */
+export function radar_get_contact_info(index: i32, dst: RadarContactInfo): void {
+	return _internal_radar_get_contact_info(index, dst);
+}
+
+// @ts-ignore
+@external("protologic", "radar_get_contact_list")
+declare function _internal_radar_get_contact_list(ptr: RadarContactInfo, len: i32): void;
+
+/**
+ */
+export function radar_get_contact_list(ptr: RadarContactInfo, len: i32): void {
+	return _internal_radar_get_contact_list(ptr, len);
 }
 
 // @ts-ignore

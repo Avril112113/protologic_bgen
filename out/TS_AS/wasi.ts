@@ -2,7 +2,8 @@
 // VERSION 0.2.0 //
 
 
-// wasi.h
+
+// wasi.ts
 
 
 // @ts-ignore
