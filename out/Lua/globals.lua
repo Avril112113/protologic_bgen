@@ -1,9 +1,12 @@
 -- DO NOT MODIFY, THIS FILE IS GENERATED --
--- VERSION 0.2.0 --
+-- VERSION 0.3.0 --
 ---@meta
 
 -- Consts set by Cpp/constants_vars.cpp
 
+
+---@type number
+TICKSECONDS = nil
 
 ---@type number
 FUELDENSITY = nil
@@ -13,6 +16,9 @@ SPACESHIPTHRUST = nil
 
 ---@type number
 SPACESHIPFUELCONSUMPTION = nil
+
+---@type number
+SPACESHIPFUELCAPACITY = nil
 
 ---@type number
 TURRETMINELEVATION = nil
@@ -39,16 +45,22 @@ TURRETSHELLSPEED = nil
 TURRETREFIRETIME = nil
 
 ---@type number
-MISSILERADARMINRANGE = nil
+TURRETRELOADTIME = nil
 
 ---@type number
-MISSILERADARMAXRANGE = nil
+TURRETMAGAZINECAPACITYARMOURPIERCING = nil
 
 ---@type number
-MISSILERADARMINANGLE = nil
+TURRETMAGAZINECAPACITYFLAK = nil
 
 ---@type number
-MISSILERADARMAXANGLE = nil
+FLAKSHELLDAMAGE = nil
+
+---@type number
+FLAKSHELLRANGE = nil
+
+---@type number
+APSHELLDAMAGE = nil
 
 ---@type number
 SHIPRADARMINANGLE = nil
@@ -57,25 +69,13 @@ SHIPRADARMINANGLE = nil
 SHIPRADARMAXANGLE = nil
 
 ---@type number
-MISSILEREFIRETIME = nil
-
----@type number
 SHIPBASEMASS = nil
-
----@type number
-MISSILEBASEMASS = nil
-
----@type number
-MISSILEWHEELTORQUE = nil
 
 ---@type number
 SHIPWHEELTORQUE = nil
 
 ---@type number
 SHIPRADIUS = nil
-
----@type number
-MISSILERADIUS = nil
 
 ---@type integer
 SHIPMAXCPUFUEL = nil
@@ -85,4 +85,7 @@ SHIPMINCPUFUEL = nil
 
 ---@type integer
 SHIPPERTICKCPUFUEL = nil
+
+---@type integer
+WASMMEMORYLIMIT = nil
 

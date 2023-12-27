@@ -1,5 +1,5 @@
 // DO NOT MODIFY, THIS FILE IS GENERATED //
-// VERSION {{bindings.version}} //
+// VERSION @(bindings.version) //
 
 
 #pragma once

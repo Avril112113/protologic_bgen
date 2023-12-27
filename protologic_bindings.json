@@ -1,5 +1,5 @@
 {
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"structs": {
 		"Vector3": {
 			"fields": [
@@ -41,6 +41,11 @@
 		"constants": {
 			"module": "protologic",
 			"functions": {
+				"const_get_tickseconds": {
+					"results": [
+						{ "name": "dt", "type": "f32" }
+					]
+				},
 				"const_get_fueldensity": {
 					"results": [
 						{ "name": "density", "type": "f32" }
@@ -54,6 +59,11 @@
 				"const_get_spaceshipfuelconsumption": {
 					"results": [
 						{ "name": "consumption", "type": "f32" }
+					]
+				},
+				"const_get_spaceshipfuelcapacity": {
+					"results": [
+						{ "name": "capacity", "type": "f32" }
 					]
 				},
 				"const_get_turretminelevation": {
@@ -96,24 +106,34 @@
 						{ "name": "refire_time", "type": "f32" }
 					]
 				},
-				"const_get_missileradarminrange": {
+				"const_get_turretreloadtime": {
 					"results": [
-						{ "name": "min_range", "type": "f32" }
+						{ "name": "reload_time", "type": "f32" }
 					]
 				},
-				"const_get_missileradarmaxrange": {
+				"const_get_turretmagazinecapacityarmourpiercing": {
 					"results": [
-						{ "name": "max_range", "type": "f32" }
+						{ "name": "capacity_ap", "type": "f32" }
 					]
 				},
-				"const_get_missileradarminangle": {
+				"const_get_turretmagazinecapacityflak": {
 					"results": [
-						{ "name": "min_angle", "type": "f32" }
+						{ "name": "capacity_flak", "type": "f32" }
 					]
 				},
-				"const_get_missileradarmaxangle": {
+				"const_get_flakshelldamage": {
 					"results": [
-						{ "name": "max_angle", "type": "f32" }
+						{ "name": "damage", "type": "f32" }
+					]
+				},
+				"const_get_flakshellrange": {
+					"results": [
+						{ "name": "range", "type": "f32" }
+					]
+				},
+				"const_get_apshelldamage": {
+					"results": [
+						{ "name": "damage", "type": "f32" }
 					]
 				},
 				"const_get_shipradarminangle": {
@@ -126,24 +146,9 @@
 						{ "name": "max_angle", "type": "f32" }
 					]
 				},
-				"const_get_missilerefiretime": {
-					"results": [
-						{ "name": "refire_time", "type": "f32" }
-					]
-				},
 				"const_get_shipbasemass": {
 					"results": [
 						{ "name": "mass", "type": "f32" }
-					]
-				},
-				"const_get_missilebasemass": {
-					"results": [
-						{ "name": "mass", "type": "f32" }
-					]
-				},
-				"const_get_missilewheeltorque": {
-					"results": [
-						{ "name": "torque", "type": "f32" }
 					]
 				},
 				"const_get_shipwheeltorque": {
@@ -152,11 +157,6 @@
 					]
 				},
 				"const_get_shipradius": {
-					"results": [
-						{ "name": "radius", "type": "f32" }
-					]
-				},
-				"const_get_missileradius": {
 					"results": [
 						{ "name": "radius", "type": "f32" }
 					]
@@ -174,6 +174,11 @@
 				"const_get_shippertickcpufuel": {
 					"results": [
 						{ "name": "cpufuel", "type": "i64" }
+					]
+				},
+				"const_get_wasmmemorylimit": {
+					"results": [
+						{ "name": "limit", "type": "i64" }
 					]
 				}
 			}
@@ -308,6 +313,7 @@
 					]
 				},
 				"debug_sphere_set": {
+					"deprecated": "Use `debug_sphere_create` instead",
 					"args": [
 						{ "name": "x", "type": "f32" },
 						{ "name": "y", "type": "f32" },
@@ -319,6 +325,7 @@
 					]
 				},
 				"debug_line_set": {
+					"deprecated": "Use `debug_line_create` instead",
 					"args": [
 						{ "name": "x1", "type": "f32" },
 						{ "name": "y1", "type": "f32" },
@@ -330,6 +337,43 @@
 						{ "name": "g", "type": "f32" },
 						{ "name": "b", "type": "f32" }
 					]
+				},
+				"debug_shape_sphere_create": {
+					"args": [
+						{ "name": "x", "type": "f32" },
+						{ "name": "y", "type": "f32" },
+						{ "name": "z", "type": "f32" },
+						{ "name": "radius", "type": "f32" },
+						{ "name": "r", "type": "f32" },
+						{ "name": "g", "type": "f32" },
+						{ "name": "b", "type": "f32" }
+					],
+					"results": [
+						{ "name": "id", "type": "i32" }
+					]
+				},
+				"debug_shape_line_create": {
+					"args": [
+						{ "name": "x1", "type": "f32" },
+						{ "name": "y1", "type": "f32" },
+						{ "name": "z1", "type": "f32" },
+						{ "name": "x2", "type": "f32" },
+						{ "name": "y2", "type": "f32" },
+						{ "name": "z2", "type": "f32" },
+						{ "name": "r", "type": "f32" },
+						{ "name": "g", "type": "f32" },
+						{ "name": "b", "type": "f32" }
+					],
+					"results": [
+						{ "name": "id", "type": "i32" }
+					]
+				},
+				"debug_shape_destroy": {
+					"args": [
+						{ "name": "id", "type": "i32" }
+					]
+				},
+				"debug_pause": {
 				}
 			}
 		},

@@ -1,5 +1,5 @@
 // DO NOT MODIFY, THIS FILE IS GENERATED //
-// VERSION 0.2.0 //
+// VERSION 0.3.0 //
 
 // Generated lua library utilising the generated C bindings.
 
@@ -13,6 +13,12 @@
 
 
 // constants //
+
+static int lua_protologiclib_const_get_tickseconds(lua_State* state) {
+	float result = const_get_tickseconds();
+	lua_pushnumber(state, result);
+	return 1;
+}
 
 static int lua_protologiclib_const_get_fueldensity(lua_State* state) {
 	float result = const_get_fueldensity();
@@ -28,6 +34,12 @@ static int lua_protologiclib_const_get_spaceshipthrust(lua_State* state) {
 
 static int lua_protologiclib_const_get_spaceshipfuelconsumption(lua_State* state) {
 	float result = const_get_spaceshipfuelconsumption();
+	lua_pushnumber(state, result);
+	return 1;
+}
+
+static int lua_protologiclib_const_get_spaceshipfuelcapacity(lua_State* state) {
+	float result = const_get_spaceshipfuelcapacity();
 	lua_pushnumber(state, result);
 	return 1;
 }
@@ -80,26 +92,38 @@ static int lua_protologiclib_const_get_turretrefiretime(lua_State* state) {
 	return 1;
 }
 
-static int lua_protologiclib_const_get_missileradarminrange(lua_State* state) {
-	float result = const_get_missileradarminrange();
+static int lua_protologiclib_const_get_turretreloadtime(lua_State* state) {
+	float result = const_get_turretreloadtime();
 	lua_pushnumber(state, result);
 	return 1;
 }
 
-static int lua_protologiclib_const_get_missileradarmaxrange(lua_State* state) {
-	float result = const_get_missileradarmaxrange();
+static int lua_protologiclib_const_get_turretmagazinecapacityarmourpiercing(lua_State* state) {
+	float result = const_get_turretmagazinecapacityarmourpiercing();
 	lua_pushnumber(state, result);
 	return 1;
 }
 
-static int lua_protologiclib_const_get_missileradarminangle(lua_State* state) {
-	float result = const_get_missileradarminangle();
+static int lua_protologiclib_const_get_turretmagazinecapacityflak(lua_State* state) {
+	float result = const_get_turretmagazinecapacityflak();
 	lua_pushnumber(state, result);
 	return 1;
 }
 
-static int lua_protologiclib_const_get_missileradarmaxangle(lua_State* state) {
-	float result = const_get_missileradarmaxangle();
+static int lua_protologiclib_const_get_flakshelldamage(lua_State* state) {
+	float result = const_get_flakshelldamage();
+	lua_pushnumber(state, result);
+	return 1;
+}
+
+static int lua_protologiclib_const_get_flakshellrange(lua_State* state) {
+	float result = const_get_flakshellrange();
+	lua_pushnumber(state, result);
+	return 1;
+}
+
+static int lua_protologiclib_const_get_apshelldamage(lua_State* state) {
+	float result = const_get_apshelldamage();
 	lua_pushnumber(state, result);
 	return 1;
 }
@@ -116,26 +140,8 @@ static int lua_protologiclib_const_get_shipradarmaxangle(lua_State* state) {
 	return 1;
 }
 
-static int lua_protologiclib_const_get_missilerefiretime(lua_State* state) {
-	float result = const_get_missilerefiretime();
-	lua_pushnumber(state, result);
-	return 1;
-}
-
 static int lua_protologiclib_const_get_shipbasemass(lua_State* state) {
 	float result = const_get_shipbasemass();
-	lua_pushnumber(state, result);
-	return 1;
-}
-
-static int lua_protologiclib_const_get_missilebasemass(lua_State* state) {
-	float result = const_get_missilebasemass();
-	lua_pushnumber(state, result);
-	return 1;
-}
-
-static int lua_protologiclib_const_get_missilewheeltorque(lua_State* state) {
-	float result = const_get_missilewheeltorque();
 	lua_pushnumber(state, result);
 	return 1;
 }
@@ -148,12 +154,6 @@ static int lua_protologiclib_const_get_shipwheeltorque(lua_State* state) {
 
 static int lua_protologiclib_const_get_shipradius(lua_State* state) {
 	float result = const_get_shipradius();
-	lua_pushnumber(state, result);
-	return 1;
-}
-
-static int lua_protologiclib_const_get_missileradius(lua_State* state) {
-	float result = const_get_missileradius();
 	lua_pushnumber(state, result);
 	return 1;
 }
@@ -172,6 +172,12 @@ static int lua_protologiclib_const_get_shipmincpufuel(lua_State* state) {
 
 static int lua_protologiclib_const_get_shippertickcpufuel(lua_State* state) {
 	int64_t result = const_get_shippertickcpufuel();
+	lua_pushinteger(state, result);
+	return 1;
+}
+
+static int lua_protologiclib_const_get_wasmmemorylimit(lua_State* state) {
+	int64_t result = const_get_wasmmemorylimit();
 	lua_pushinteger(state, result);
 	return 1;
 }
@@ -342,7 +348,7 @@ static int lua_protologiclib_gun3_reload(lua_State* state) {
 	return 0;
 }
 
-static int lua_protologiclib_debug_sphere_set(lua_State* state) {
+static int lua_protologiclib_debug_shape_sphere_create(lua_State* state) {
 	float arg_x = luaL_checknumber(state, 1);
 	float arg_y = luaL_checknumber(state, 2);
 	float arg_z = luaL_checknumber(state, 3);
@@ -350,11 +356,12 @@ static int lua_protologiclib_debug_sphere_set(lua_State* state) {
 	float arg_r = luaL_checknumber(state, 5);
 	float arg_g = luaL_checknumber(state, 6);
 	float arg_b = luaL_checknumber(state, 7);
-	debug_sphere_set(arg_x, arg_y, arg_z, arg_radius, arg_r, arg_g, arg_b);
-	return 0;
+	int32_t result = debug_shape_sphere_create(arg_x, arg_y, arg_z, arg_radius, arg_r, arg_g, arg_b);
+	lua_pushinteger(state, result);
+	return 1;
 }
 
-static int lua_protologiclib_debug_line_set(lua_State* state) {
+static int lua_protologiclib_debug_shape_line_create(lua_State* state) {
 	float arg_x1 = luaL_checknumber(state, 1);
 	float arg_y1 = luaL_checknumber(state, 2);
 	float arg_z1 = luaL_checknumber(state, 3);
@@ -364,7 +371,19 @@ static int lua_protologiclib_debug_line_set(lua_State* state) {
 	float arg_r = luaL_checknumber(state, 7);
 	float arg_g = luaL_checknumber(state, 8);
 	float arg_b = luaL_checknumber(state, 9);
-	debug_line_set(arg_x1, arg_y1, arg_z1, arg_x2, arg_y2, arg_z2, arg_r, arg_g, arg_b);
+	int32_t result = debug_shape_line_create(arg_x1, arg_y1, arg_z1, arg_x2, arg_y2, arg_z2, arg_r, arg_g, arg_b);
+	lua_pushinteger(state, result);
+	return 1;
+}
+
+static int lua_protologiclib_debug_shape_destroy(lua_State* state) {
+	int32_t arg_id = luaL_checkinteger(state, 1);
+	debug_shape_destroy(arg_id);
+	return 0;
+}
+
+static int lua_protologiclib_debug_pause(lua_State* state) {
+	debug_pause();
 	return 0;
 }
 
@@ -772,9 +791,11 @@ static int lua_protologiclib_gun3_get_magazine_reloadtime(lua_State* state) {
 
 static const struct luaL_Reg lua_protologiclib [] = {
 	// {{ group.name }} //
+	{"const_get_tickseconds", lua_protologiclib_const_get_tickseconds},
 	{"const_get_fueldensity", lua_protologiclib_const_get_fueldensity},
 	{"const_get_spaceshipthrust", lua_protologiclib_const_get_spaceshipthrust},
 	{"const_get_spaceshipfuelconsumption", lua_protologiclib_const_get_spaceshipfuelconsumption},
+	{"const_get_spaceshipfuelcapacity", lua_protologiclib_const_get_spaceshipfuelcapacity},
 	{"const_get_turretminelevation", lua_protologiclib_const_get_turretminelevation},
 	{"const_get_turretmaxelevation", lua_protologiclib_const_get_turretmaxelevation},
 	{"const_get_turretelevationspeed", lua_protologiclib_const_get_turretelevationspeed},
@@ -783,22 +804,21 @@ static const struct luaL_Reg lua_protologiclib [] = {
 	{"const_get_turretmaxfuse", lua_protologiclib_const_get_turretmaxfuse},
 	{"const_get_turretshellspeed", lua_protologiclib_const_get_turretshellspeed},
 	{"const_get_turretrefiretime", lua_protologiclib_const_get_turretrefiretime},
-	{"const_get_missileradarminrange", lua_protologiclib_const_get_missileradarminrange},
-	{"const_get_missileradarmaxrange", lua_protologiclib_const_get_missileradarmaxrange},
-	{"const_get_missileradarminangle", lua_protologiclib_const_get_missileradarminangle},
-	{"const_get_missileradarmaxangle", lua_protologiclib_const_get_missileradarmaxangle},
+	{"const_get_turretreloadtime", lua_protologiclib_const_get_turretreloadtime},
+	{"const_get_turretmagazinecapacityarmourpiercing", lua_protologiclib_const_get_turretmagazinecapacityarmourpiercing},
+	{"const_get_turretmagazinecapacityflak", lua_protologiclib_const_get_turretmagazinecapacityflak},
+	{"const_get_flakshelldamage", lua_protologiclib_const_get_flakshelldamage},
+	{"const_get_flakshellrange", lua_protologiclib_const_get_flakshellrange},
+	{"const_get_apshelldamage", lua_protologiclib_const_get_apshelldamage},
 	{"const_get_shipradarminangle", lua_protologiclib_const_get_shipradarminangle},
 	{"const_get_shipradarmaxangle", lua_protologiclib_const_get_shipradarmaxangle},
-	{"const_get_missilerefiretime", lua_protologiclib_const_get_missilerefiretime},
 	{"const_get_shipbasemass", lua_protologiclib_const_get_shipbasemass},
-	{"const_get_missilebasemass", lua_protologiclib_const_get_missilebasemass},
-	{"const_get_missilewheeltorque", lua_protologiclib_const_get_missilewheeltorque},
 	{"const_get_shipwheeltorque", lua_protologiclib_const_get_shipwheeltorque},
 	{"const_get_shipradius", lua_protologiclib_const_get_shipradius},
-	{"const_get_missileradius", lua_protologiclib_const_get_missileradius},
 	{"const_get_shipmaxcpufuel", lua_protologiclib_const_get_shipmaxcpufuel},
 	{"const_get_shipmincpufuel", lua_protologiclib_const_get_shipmincpufuel},
 	{"const_get_shippertickcpufuel", lua_protologiclib_const_get_shippertickcpufuel},
+	{"const_get_wasmmemorylimit", lua_protologiclib_const_get_wasmmemorylimit},
 	// {{ group.name }} //
 	{"ship_self_destruct", lua_protologiclib_ship_self_destruct},
 	{"engine_set_throttle", lua_protologiclib_engine_set_throttle},
@@ -828,8 +848,10 @@ static const struct luaL_Reg lua_protologiclib [] = {
 	{"gun3_set_fuse", lua_protologiclib_gun3_set_fuse},
 	{"gun3_trigger", lua_protologiclib_gun3_trigger},
 	{"gun3_reload", lua_protologiclib_gun3_reload},
-	{"debug_sphere_set", lua_protologiclib_debug_sphere_set},
-	{"debug_line_set", lua_protologiclib_debug_line_set},
+	{"debug_shape_sphere_create", lua_protologiclib_debug_shape_sphere_create},
+	{"debug_shape_line_create", lua_protologiclib_debug_shape_line_create},
+	{"debug_shape_destroy", lua_protologiclib_debug_shape_destroy},
+	{"debug_pause", lua_protologiclib_debug_pause},
 	// {{ group.name }} //
 	{"cpu_get_fuel", lua_protologiclib_cpu_get_fuel},
 	{"ship_get_position_x", lua_protologiclib_ship_get_position_x},

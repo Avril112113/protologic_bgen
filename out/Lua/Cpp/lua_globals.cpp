@@ -1,5 +1,5 @@
 // DO NOT MODIFY, THIS FILE IS GENERATED //
-// VERSION 0.2.0 //
+// VERSION 0.3.0 //
 
 // Generated lua library utilising the generated C bindings.
 // This NOT ready-made, is to be copy-pasted.
@@ -10,6 +10,9 @@
 
 
 void lua_protologic_set_globals(lua_State* state) {
+	lua_pushnumber(state, const_get_tickseconds());
+	lua_setglobal(state, "TICKSECONDS");
+
 	lua_pushnumber(state, const_get_fueldensity());
 	lua_setglobal(state, "FUELDENSITY");
 
@@ -18,6 +21,9 @@ void lua_protologic_set_globals(lua_State* state) {
 
 	lua_pushnumber(state, const_get_spaceshipfuelconsumption());
 	lua_setglobal(state, "SPACESHIPFUELCONSUMPTION");
+
+	lua_pushnumber(state, const_get_spaceshipfuelcapacity());
+	lua_setglobal(state, "SPACESHIPFUELCAPACITY");
 
 	lua_pushnumber(state, const_get_turretminelevation());
 	lua_setglobal(state, "TURRETMINELEVATION");
@@ -43,17 +49,23 @@ void lua_protologic_set_globals(lua_State* state) {
 	lua_pushnumber(state, const_get_turretrefiretime());
 	lua_setglobal(state, "TURRETREFIRETIME");
 
-	lua_pushnumber(state, const_get_missileradarminrange());
-	lua_setglobal(state, "MISSILERADARMINRANGE");
+	lua_pushnumber(state, const_get_turretreloadtime());
+	lua_setglobal(state, "TURRETRELOADTIME");
 
-	lua_pushnumber(state, const_get_missileradarmaxrange());
-	lua_setglobal(state, "MISSILERADARMAXRANGE");
+	lua_pushnumber(state, const_get_turretmagazinecapacityarmourpiercing());
+	lua_setglobal(state, "TURRETMAGAZINECAPACITYARMOURPIERCING");
 
-	lua_pushnumber(state, const_get_missileradarminangle());
-	lua_setglobal(state, "MISSILERADARMINANGLE");
+	lua_pushnumber(state, const_get_turretmagazinecapacityflak());
+	lua_setglobal(state, "TURRETMAGAZINECAPACITYFLAK");
 
-	lua_pushnumber(state, const_get_missileradarmaxangle());
-	lua_setglobal(state, "MISSILERADARMAXANGLE");
+	lua_pushnumber(state, const_get_flakshelldamage());
+	lua_setglobal(state, "FLAKSHELLDAMAGE");
+
+	lua_pushnumber(state, const_get_flakshellrange());
+	lua_setglobal(state, "FLAKSHELLRANGE");
+
+	lua_pushnumber(state, const_get_apshelldamage());
+	lua_setglobal(state, "APSHELLDAMAGE");
 
 	lua_pushnumber(state, const_get_shipradarminangle());
 	lua_setglobal(state, "SHIPRADARMINANGLE");
@@ -61,26 +73,14 @@ void lua_protologic_set_globals(lua_State* state) {
 	lua_pushnumber(state, const_get_shipradarmaxangle());
 	lua_setglobal(state, "SHIPRADARMAXANGLE");
 
-	lua_pushnumber(state, const_get_missilerefiretime());
-	lua_setglobal(state, "MISSILEREFIRETIME");
-
 	lua_pushnumber(state, const_get_shipbasemass());
 	lua_setglobal(state, "SHIPBASEMASS");
-
-	lua_pushnumber(state, const_get_missilebasemass());
-	lua_setglobal(state, "MISSILEBASEMASS");
-
-	lua_pushnumber(state, const_get_missilewheeltorque());
-	lua_setglobal(state, "MISSILEWHEELTORQUE");
 
 	lua_pushnumber(state, const_get_shipwheeltorque());
 	lua_setglobal(state, "SHIPWHEELTORQUE");
 
 	lua_pushnumber(state, const_get_shipradius());
 	lua_setglobal(state, "SHIPRADIUS");
-
-	lua_pushnumber(state, const_get_missileradius());
-	lua_setglobal(state, "MISSILERADIUS");
 
 	lua_pushinteger(state, const_get_shipmaxcpufuel());
 	lua_setglobal(state, "SHIPMAXCPUFUEL");
@@ -90,5 +90,8 @@ void lua_protologic_set_globals(lua_State* state) {
 
 	lua_pushinteger(state, const_get_shippertickcpufuel());
 	lua_setglobal(state, "SHIPPERTICKCPUFUEL");
+
+	lua_pushinteger(state, const_get_wasmmemorylimit());
+	lua_setglobal(state, "WASMMEMORYLIMIT");
 
 }

@@ -1,11 +1,13 @@
 -- DO NOT MODIFY, THIS FILE IS GENERATED --
--- VERSION 0.2.0 --
+-- VERSION 0.3.0 --
 ---@meta
 
 ---@class ProtoLogic
+---@field const_get_tickseconds fun(): number
 ---@field const_get_fueldensity fun(): number
 ---@field const_get_spaceshipthrust fun(): number
 ---@field const_get_spaceshipfuelconsumption fun(): number
+---@field const_get_spaceshipfuelcapacity fun(): number
 ---@field const_get_turretminelevation fun(): number
 ---@field const_get_turretmaxelevation fun(): number
 ---@field const_get_turretelevationspeed fun(): number
@@ -14,20 +16,19 @@
 ---@field const_get_turretmaxfuse fun(): number
 ---@field const_get_turretshellspeed fun(): number
 ---@field const_get_turretrefiretime fun(): number
----@field const_get_missileradarminrange fun(): number
----@field const_get_missileradarmaxrange fun(): number
----@field const_get_missileradarminangle fun(): number
----@field const_get_missileradarmaxangle fun(): number
+---@field const_get_turretreloadtime fun(): number
+---@field const_get_turretmagazinecapacityarmourpiercing fun(): number
+---@field const_get_turretmagazinecapacityflak fun(): number
+---@field const_get_flakshelldamage fun(): number
+---@field const_get_flakshellrange fun(): number
+---@field const_get_apshelldamage fun(): number
 ---@field const_get_shipradarminangle fun(): number
 ---@field const_get_shipradarmaxangle fun(): number
----@field const_get_missilerefiretime fun(): number
 ---@field const_get_shipbasemass fun(): number
----@field const_get_missilebasemass fun(): number
----@field const_get_missilewheeltorque fun(): number
 ---@field const_get_shipwheeltorque fun(): number
 ---@field const_get_shipradius fun(): number
----@field const_get_missileradius fun(): number
 ---@field const_get_shipmaxcpufuel fun(): integer
 ---@field const_get_shipmincpufuel fun(): integer
 ---@field const_get_shippertickcpufuel fun(): integer
+---@field const_get_wasmmemorylimit fun(): integer
 protologic = nil
