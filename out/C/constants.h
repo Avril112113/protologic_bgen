@@ -1,5 +1,5 @@
 // DO NOT MODIFY, THIS FILE IS GENERATED //
-// VERSION 0.3.0 //
+// VERSION 0.4.0 //
 
 
 #pragma once
@@ -65,4 +65,8 @@ WASM_IMPORT("protologic", "const_get_shipmincpufuel", const_get_shipmincpufuel, 
 WASM_IMPORT("protologic", "const_get_shippertickcpufuel", const_get_shippertickcpufuel, int64_t);
 
 WASM_IMPORT("protologic", "const_get_wasmmemorylimit", const_get_wasmmemorylimit, int64_t);
+
+WASM_IMPORT("protologic", "const_get_shipmissilelaunchercount", const_get_shipmissilelaunchercount, int32_t);
+
+WASM_IMPORT("protologic", "const_get_shipmissilelauncherreloadtime", const_get_shipmissilelauncherreloadtime, int32_t);
 

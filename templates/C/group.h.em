@@ -20,14 +20,14 @@
 @[ if function.description ]@
 @( desc2comment(function.description, "// ") )
 @[ end if ]@
-@[ if function.deprecated is not None ][[deprecated]] @[ end if ]@
+@[ if function.deprecated ][[deprecated]] @[ end if ]@
 WASM_IMPORT(@
 "@(group.module)", @
 "@(function.name)", @
 @(function.name), @
 @(retype(function.getResult(0)))@
 @[ for arg in function.args ]@
-, @(retype(arg))@(arg.ifPtr("*")) @(arg.name)@
+, @(retype(arg))@("*" if not arg.count and not isinstance(arg.type, WasmType) else "") @(arg.name)@("[]" if arg.count else "")@
 @[ end for ]@
 );
 

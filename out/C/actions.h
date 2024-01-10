@@ -1,5 +1,5 @@
 // DO NOT MODIFY, THIS FILE IS GENERATED //
-// VERSION 0.3.0 //
+// VERSION 0.4.0 //
 
 
 #pragma once
@@ -68,10 +68,6 @@ WASM_IMPORT("protologic", "gun3_trigger", gun3_trigger, void);
 
 WASM_IMPORT("protologic", "gun3_reload", gun3_reload, void, int32_t ammo);
 
-[[deprecated]] WASM_IMPORT("protologic", "debug_sphere_set", debug_sphere_set, void, float x, float y, float z, float radius, float r, float g, float b);
-
-[[deprecated]] WASM_IMPORT("protologic", "debug_line_set", debug_line_set, void, float x1, float y1, float z1, float x2, float y2, float z2, float r, float g, float b);
-
 WASM_IMPORT("protologic", "debug_shape_sphere_create", debug_shape_sphere_create, int32_t, float x, float y, float z, float radius, float r, float g, float b);
 
 WASM_IMPORT("protologic", "debug_shape_line_create", debug_shape_line_create, int32_t, float x1, float y1, float z1, float x2, float y2, float z2, float r, float g, float b);
@@ -79,4 +75,10 @@ WASM_IMPORT("protologic", "debug_shape_line_create", debug_shape_line_create, in
 WASM_IMPORT("protologic", "debug_shape_destroy", debug_shape_destroy, void, int32_t id);
 
 WASM_IMPORT("protologic", "debug_pause", debug_pause, void);
+
+WASM_IMPORT("protologic", "missilelauncher_trigger", missilelauncher_trigger, void, int32_t index);
+
+WASM_IMPORT("protologic", "missilelauncher_set_enginetype", missilelauncher_set_enginetype, void, int32_t index, int32_t engine_type);
+
+WASM_IMPORT("protologic", "missilelauncher_set_warheadtype", missilelauncher_set_warheadtype, void, int32_t index, int32_t warhead_type);
 

@@ -14,17 +14,24 @@ import {@(struct.name)} from "./@(struct.name)";
 
 
 @[ for function in group ]@
+@[ if function.hasCountArg ]@[ continue ]@[ end if ]@
 // @@ts-ignore
 @@external("@(group.module)", "@(function.name)")
 declare function _internal_@(function.name)(@
 @[ for i in range(len(function.args)) ]@
 @{ arg = function.args[i] }@
-@(", " if i > 0 else "")@(arg.name): @(retype(arg))@
+@(", " if i > 0 else "")@
+@(arg.name): @
+@[ if isinstance(arg.type, WasmType) ]@
+@(retype(arg.type))@
+@[ else ]@
+StaticArray<u8>@
+@[ end if ]@
 @[ end for ]@
 ): @(retype(function.getResult(0)));
 
 /**
-@[ if function.deprecated is not None ]@
+@[ if function.deprecated ]@
  * @@deprecated
 @[ end if ]@
 @[ if function.description ]@
@@ -40,7 +47,11 @@ export function @(function.name)(@
 	return _internal_@(function.name)(@
 @	@[ for i in range(len(function.args)) ]@
 @	@{ arg = function.args[i] }@
-@	@(", " if i > 0 else "")@(arg.name)@
+@	@(", " if i > 0 else "")@
+@	@(arg.name)@
+@	@[ if not isinstance(arg.type, WasmType) ]@
+@	.data@
+@	@[ end if ]@
 @	@[ end for ]@
 @	);
 }

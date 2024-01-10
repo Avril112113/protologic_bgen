@@ -1,178 +1,221 @@
 from collections import OrderedDict
-from dataclasses import dataclass
+from typing import Self, Union
 
 from .wasm_type import WasmType
 
 
-@dataclass(init=True)
 class BindingsDef:
-	"""
-	A wasm exported function argument.
-	"""
-
-	_bindings: "Bindings"
 	name: str
-	type: WasmType
-	ptr: "BindingsStruct | None"
-	ptrCount: "str | None"
-	default: int | float | None
-	description: str | None
+	type: Union["BindingsStruct",WasmType]
+	description: str = ""
+	count: str | None = None
+	offset: int|None = None
 
-	@classmethod
-	def fromJson(cls, _bindings: "Bindings", data: dict):
-		return cls(
-			_bindings=_bindings,
-			name=data["name"],
-			type=WasmType(data["type"]),
-			ptr=_bindings.structs[data["ptr"]] if "ptr" in data else None,
-			ptrCount=data.get("ptrCount", None),
-			default=data.get("default", None),
-			description=data.get("description", None),
-		)
+	def __init__(self, bindings: "Bindings"):
+		self._bindings = bindings
+
+	def __repr__(self):
+		return f"<{self.__class__.__name__} name=\"{self.name}\">"
+
+	def updateFromJson(self, data: dict) -> Self:
+		self.name = data["name"]
+		type_name = data["type"]
+		if type_name in WasmType:
+			self.type = WasmType(type_name)
+		elif type_name in self._bindings.structs:
+			self.type = self._bindings.structs[type_name]
+		else:
+			raise ValueError(f"Invalid type '{type_name}'")
+		self.description = data.get("description", self.description)
+		self.count = data.get("count", self.count)
+		self.offset = data.get("offset", self.offset)
+		return self
+
+
+class BindingsQuickStateInfo:
+	name: str
+	_func_name: str
+	init_function: "BindingsFunction"
+
+	def __init__(self, bindings: "Bindings"):
+		self._bindings = bindings
+
+	def updateFromJson(self, data: dict) -> Self:
+		self.name = data["name"]
+		self._func_name = data["init_function"]
+		return self
 
 	@property
-	def is_ptr(self):
-		return self.ptr is not None
+	def init_function_group(self):
+		found_groups = tuple([group for group in self._bindings.groups.values() if self._func_name in group.functions])
+		if len(found_groups) <= 0:
+			raise ValueError(f"Missing init_function '{self._func_name}'")
+		elif len(found_groups) > 1:
+			raise ValueError(f"Multiple init_function '{self._func_name}'")
+		return found_groups[0]
 
-	def ifPtr(self, s: str, default=""):
-		return s if self.ptr is not None else default
-
-
-@dataclass(init=True)
-class BindingsFunction:
-	"""
-	A single wasm exported function, and it's related info.
-	"""
-
-	_bindings: "Bindings"
-	name: str
-	deprecated: str | None
-	description: str | None
-	args: list[BindingsDef]
-	results: list[BindingsDef]
-
-	@classmethod
-	def fromJson(cls, _bindings: "Bindings", name: str, data: dict):
-		return cls(
-			_bindings=_bindings,
-			name=name,
-			deprecated=data.get("deprecated", None),
-			description=data.get("description", None),
-			args=[BindingsDef.fromJson(_bindings, arg) for arg in data["args"]] if "args" in data else [],
-			results=[BindingsDef.fromJson(_bindings, result) for result in data["results"]] if "results" in data else []
-		)
-
-	def getArg(self, index: int, default=None):
-		if index < 0 or index >= len(self.args):
-			return default
-		return self.args[index]
-
-	def getResult(self, index: int, default=None):
-		if index < 0 or index >= len(self.results):
-			return default
-		return self.results[index]
-
-	def getUsedStructs(self, deprecated=True) -> list["BindingsStruct"]:
-		structs = []
-		for arg in self.args:
-			if arg.ptr is not None and arg.ptr not in structs:
-				structs.append(arg.ptr)
-		for result in self.results:
-			if result.ptr is not None and result.ptr not in structs:
-				structs.append(result.ptr)
-		return structs
-
-	def hasPtrArg(self):
-		return any(arg.ptr is not None for arg in self.args)
-
-	def hasPtrCountArg(self):
-		return any(arg.ptrCount is not None for arg in self.args)
+	@property
+	def init_function(self):
+		return self.init_function_group.functions[self._func_name]
 
 
-@dataclass(init=True)
-class BindingsGroup:
-	"""
-	A collection of BindingsFunction
-	"""
-
-	_bindings: "Bindings"
-	name: str
-	description: str | None
-	module: str
-	functions: dict[str, BindingsFunction]
-
-	@classmethod
-	def fromJson(cls, _bindings: "Bindings", name: str, data: dict):
-		return cls(
-			_bindings=_bindings,
-			name=name,
-			description=data.get("description", None),
-			module=data["module"],
-			functions={name: BindingsFunction.fromJson(_bindings, name, function) for name, function in data["functions"].items()}
-		)
-
-	def getUsedStructs(self) -> list["BindingsStruct"]:
-		structs = []
-		for func in self.functions.values():
-			structs.extend(struct for struct in func.getUsedStructs() if struct not in structs)
-		return structs
-
-	def __iter__(self):
-		return self.functions.values().__iter__()
-
-	def __getitem__(self, function: str) -> BindingsFunction:
-		return self.functions[function]
-
-
-@dataclass(init=True)
 class BindingsStruct:
-	"""
-	A single struct defining the layout of a pointer.
-	"""
-
-	_bindings: "Bindings"
 	name: str
-	deprecated: str | None
-	description: str | None
+	description: str = ""
+	deprecated: bool = False
 	fields: OrderedDict[str, BindingsDef]
+	quickstate: BindingsQuickStateInfo|None = None
+	_has_updated = False
 
-	@classmethod
-	def fromJson(cls, _bindings: "Bindings", name: str, data: dict):
-		return cls(
-			_bindings=_bindings,
-			name=name,
-			deprecated=data.get("deprecated", None),
-			description=data.get("description", None),
-			fields=OrderedDict((field["name"], BindingsDef.fromJson(_bindings, field)) for field in data["fields"])
-		)
+	def __init__(self, bindings: "Bindings", name: str):
+		self._bindings = bindings
+		self.name = name
+		self.fields = OrderedDict()
+
+	def __repr__(self):
+		return f"<{self.__class__.__name__} name=\"{self.name}\">"
 
 	def __iter__(self):
 		return self.fields.values().__iter__()
 
-	def __getitem__(self, field: str) -> BindingsDef:
-		return self.fields[field]
+	def __getitem__(self, name: str):
+		return self.fields.get(name, None)
+
+	def updateFromJson(self, data: dict) -> Self:
+		self._has_updated = True
+		self.description = data.get("description", self.description)
+		self.deprecated = data.get("deprecated", self.deprecated)
+		self.quickstate = BindingsQuickStateInfo(self._bindings).updateFromJson(data["quickstate"]) if "quickstate" in data else None
+		for fieldData in data["fields"]:
+			field = self.fields.get(fieldData["name"], BindingsDef(self._bindings))
+			field.updateFromJson(fieldData)
+			self.fields[field.name] = field
+		if not all(field.offset is not None for field in self.fields.values()):
+			raise ValueError(f"All fields in struct '{self.name}' must have an offset defined.")
+		return self
+
+	def getUsedStructs(self):
+		structs = []
+		for field in self.fields.values():
+			if isinstance(field.type, BindingsStruct) and field.type not in structs:
+				structs.append(field.type)
+		return structs
+
+	@property
+	def byteCount(self):
+		lastField = None
+		for field in self.fields.values():
+			if lastField is None or lastField.offset < field.offset:
+				lastField = field
+		if lastField is None:
+			return 0
+		return lastField.offset + lastField.type.byteCount
+
+
+class BindingsFunction:
+	name: str
+	description: str = ""
+	deprecated: bool = False
+	args: list[BindingsDef]
+	results: list[BindingsDef]
+
+	def __init__(self, bindings: "Bindings", name: str):
+		self._bindings = bindings
+		self.name = name
+		self.args = []
+		self.results = []
+
+	def __repr__(self):
+		return f"<{self.__class__.__name__} name=\"{self.name}\">"
+
+	def updateFromJson(self, data: dict) -> Self:
+		self.description = data.get("description", self.description)
+		self.deprecated = data.get("deprecated", self.deprecated)
+		for argData in data.get("args", []):
+			self.args.append(BindingsDef(self._bindings).updateFromJson(argData))
+		for resultData in data.get("results", []):
+			self.results.append(BindingsDef(self._bindings).updateFromJson(resultData))
+		return self
+
+	@property
+	def isMultiResult(self):
+		return len(self.results) > 1
+
+	@property
+	def hasCountArg(self):
+		return any(arg.count is not None for arg in self.args)
+
+	@property
+	def hasStructArg(self):
+		return any(isinstance(arg.type, BindingsStruct) for arg in self.args)
+
+	def getResult(self, idx=0):
+		if idx >= len(self.results):
+			return None
+		return self.results[idx]
+
+	def getUsedStructs(self):
+		structs = []
+		for arg in self.args:
+			if isinstance(arg.type, BindingsStruct) and arg.type not in structs:
+				structs.append(arg.type)
+		for result in self.results:
+			if isinstance(result.type, BindingsStruct) and result.type not in structs:
+				structs.append(result.type)
+		return structs
+
+
+class BindingsGroup:
+	name: str
+	module: str
+	description: str = ""
+	functions: OrderedDict[str, BindingsFunction]
+
+	def __init__(self, bindings: "Bindings", name: str):
+		self._bindings = bindings
+		self.name = name
+		self.functions = OrderedDict()
+
+	def __repr__(self):
+		return f"<{self.__class__.__name__} name=\"{self.name}\">"
+
+	def __iter__(self):
+		return self.functions.values().__iter__()
+
+	def updateFromJson(self, data: dict) -> Self:
+		self.module = data["module"]
+		self.description = data.get("description", self.description)
+		for name, funcData in data["functions"].items():
+			self.functions[name] = BindingsFunction(self._bindings, name).updateFromJson(funcData)
+		return self
+
+	def getUsedStructs(self):
+		structs = []
+		for func in self.functions.values():
+			for struct in func.getUsedStructs():
+				if struct not in structs:
+					structs.append(struct)
+		return structs
 
 
 class Bindings:
-	"""
-	Top-level class for parsing `protologic_bindings.json`.
-	A collection of BindingsGroup
-	"""
-
 	version: str
-	structs: dict[str, BindingsStruct]
-	groups: dict[str, BindingsGroup]
 
-	@classmethod
-	def fromJson(cls, data: dict):
-		_bindings = cls()
-		_bindings.version = data["version"]
-		_bindings.structs = {name: BindingsStruct.fromJson(_bindings, name, struct) for name, struct in data["structs"].items()}
-		_bindings.groups = {name: BindingsGroup.fromJson(_bindings, name, group) for name, group in data["groups"].items()}
-		return _bindings
+	def __init__(self):
+		self.structs: dict[str, BindingsStruct] = {}
+		self.groups: dict[str, BindingsGroup] = {}
 
-	def __iter__(self):
-		return self.groups.values().__iter__()
+	def __repr__(self):
+		return f"<{self.__class__.__name__} version=\"{self.version}\">"
 
-	def __getitem__(self, group: str) -> BindingsGroup:
-		return self.groups[group]
+	def updateFromJson(self, data: dict) -> Self:
+		self.version = data["version"]
+		for name, structData in data["structs"].items():
+			self.structs[name] = BindingsStruct(self, name).updateFromJson(structData)
+		for name, groupData in data["groups"].items():
+			self.groups[name] = BindingsGroup(self, name).updateFromJson(groupData)
+		for struct in self.structs.values():
+			# noinspection PyProtectedMember
+			if not struct._has_updated:
+				raise ValueError(f"Missing struct definition {struct.name}")
+		return self

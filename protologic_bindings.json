@@ -1,39 +1,111 @@
 {
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"structs": {
-		"Vector3": {
-			"fields": [
-				{ "name": "x", "type": "f32" },
-				{ "name": "y", "type": "f32" },
-				{ "name": "z", "type": "f32" }
-			]
-		},
-		"Quaternion": {
-			"fields": [
-				{ "name": "x", "type": "f32" },
-				{ "name": "y", "type": "f32" },
-				{ "name": "z", "type": "f32" },
-				{ "name": "w", "type": "f32" }
-			]
-		},
-		"RadarTargetInfo": {
-			"deprecated": "Use `RadarContactInfo`",
-			"description": "Target info.",
-			"fields": [
-				{ "name": "id", "type": "i64", "default": -1 },
-				{ "name": "type", "type": "i32", "default": -1 },
-				{ "name": "distance", "type": "f32", "default": -1 }
-			]
-		},
 		"RadarContactInfo": {
 			"description": "Contact info.",
 			"fields": [
-				{ "name": "id", "type": "i64", "default": -1 },
-				{ "name": "type", "type": "i32", "default": -1 },
-				{ "name": "signal_strength", "type": "f32", "default": -1 },
-				{ "name": "x", "type": "f32" },
-				{ "name": "y", "type": "f32" },
-				{ "name": "z", "type": "f32" }
+				{ "name": "id", "type": "i64", "offset": 0 },
+				{ "name": "type", "type": "i32", "offset": 8 },
+				{ "name": "signal_strength", "type": "f32", "offset": 16 },
+				{ "name": "x", "type": "f32", "offset": 24 },
+				{ "name": "y", "type": "f32", "offset": 32 },
+				{ "name": "z", "type": "f32", "offset": 40 }
+			]
+		},
+		"PackedVector3": {
+			"fields": [
+				{ "name": "x", "type": "f32", "offset": 0 },
+				{ "name": "y", "type": "f32", "offset": 4 },
+				{ "name": "z", "type": "f32", "offset": 8 }
+			]
+		},
+		"PackedQuaternion": {
+			"fields": [
+				{ "name": "x", "type": "f32", "offset": 0 },
+				{ "name": "y", "type": "f32", "offset": 4 },
+				{ "name": "z", "type": "f32", "offset": 8 },
+				{ "name": "w", "type": "f32", "offset": 12 }
+			]
+		},
+		"QS_GunData": {
+			"fields": [
+				{ "name": "bearing", "type": "f32", "offset": 0 },
+				{ "name": "elevation", "type": "f32", "offset": 96 },
+				{ "name": "refire_time", "type": "f32", "offset": 188 },
+				{ "name": "reload_time", "type": "f32", "offset": 280 },
+				{ "name": "magazine_capacity", "type": "u16", "offset": 372 },
+				{ "name": "magazine_remaining", "type": "u16", "offset": 418 },
+				{ "name": "ammo_type", "type": "i32", "offset": 464 }
+			]
+		},
+		"_MainState": {
+			"quickstate": {
+				"name": "MainState",
+				"init_function": "sharedmemory_set_readaddress"
+			},
+			"fields": [
+				{ "name": "position", "type": "PackedVector3", "offset": 0 },
+				{ "name": "velocity", "type": "PackedVector3", "offset": 12 },
+				{ "name": "orientation", "type": "PackedQuaternion", "offset": 24 },
+				{ "name": "angular_velocity", "type": "PackedVector3", "offset": 40 },
+				{ "name": "radar_contact_count", "type": "i32", "offset": 52 },
+				{ "name": "gun_data0", "type": "QS_GunData", "offset": 56 },
+				{ "name": "gun_data1", "type": "QS_GunData", "offset": 60 },
+				{ "name": "gun_data2", "type": "QS_GunData", "offset": 64 },
+				{ "name": "gun_data3", "type": "QS_GunData", "offset": 68 },
+				{ "name": "gun_bearing0", "type": "f32", "offset": 56 },
+				{ "name": "gun_bearing1", "type": "f32", "offset": 60 },
+				{ "name": "gun_bearing2", "type": "f32", "offset": 64 },
+				{ "name": "gun_bearing3", "type": "f32", "offset": 68 },
+				{ "name": "gun_elevation0", "type": "f32", "offset": 152 },
+				{ "name": "gun_elevation1", "type": "f32", "offset": 156 },
+				{ "name": "gun_elevation2", "type": "f32", "offset": 160 },
+				{ "name": "gun_elevation3", "type": "f32", "offset": 164 },
+				{ "name": "gun_refire_time0", "type": "f32", "offset": 244 },
+				{ "name": "gun_refire_time1", "type": "f32", "offset": 248 },
+				{ "name": "gun_refire_time2", "type": "f32", "offset": 252 },
+				{ "name": "gun_refire_time3", "type": "f32", "offset": 256 },
+				{ "name": "gun_reload_time0", "type": "f32", "offset": 336 },
+				{ "name": "gun_reload_time1", "type": "f32", "offset": 340 },
+				{ "name": "gun_reload_time2", "type": "f32", "offset": 344 },
+				{ "name": "gun_reload_time3", "type": "f32", "offset": 348 },
+				{ "name": "gun_magazine_capacity0", "type": "u16", "offset": 428 },
+				{ "name": "gun_magazine_capacity1", "type": "u16", "offset": 430 },
+				{ "name": "gun_magazine_capacity2", "type": "u16", "offset": 432 },
+				{ "name": "gun_magazine_capacity3", "type": "u16", "offset": 434 },
+				{ "name": "gun_magazine_remaining0", "type": "u16", "offset": 474 },
+				{ "name": "gun_magazine_remaining1", "type": "u16", "offset": 476 },
+				{ "name": "gun_magazine_remaining2", "type": "u16", "offset": 478 },
+				{ "name": "gun_magazine_remaining3", "type": "u16", "offset": 480 },
+				{ "name": "gun_ammo_type0", "type": "i32", "offset": 520 },
+				{ "name": "gun_ammo_type1", "type": "i32", "offset": 522 },
+				{ "name": "gun_ammo_type2", "type": "i32", "offset": 524 },
+				{ "name": "gun_ammo_type3", "type": "i32", "offset": 526 },
+				{ "name": "engine_fuel_amount", "type": "f32", "offset": 566 },
+				{ "name": "engine_fuel_capacity", "type": "f32", "offset": 570 },
+				{ "name": "engine_throttle", "type": "f32", "offset": 574 },
+				{ "name": "radar_noise", "type": "f32", "offset": 578 },
+				{ "name": "mass", "type": "f32", "offset": 582 },
+				{ "name": "missile_launcher_stockpile", "type": "u16", "offset": 586 },
+				{ "name": "missile_launcher_reload_time0", "type": "f32", "offset": 588 },
+				{ "name": "missile_launcher_reload_time1", "type": "f32", "offset": 592 },
+				{ "name": "missile_launcher_reload_time2", "type": "f32", "offset": 596 },
+				{ "name": "missile_launcher_reload_time3", "type": "f32", "offset": 600 },
+				{ "name": "missile_launcher_reload_time4", "type": "f32", "offset": 604 },
+				{ "name": "missile_launcher_reload_time5", "type": "f32", "offset": 608 },
+				{ "name": "missile_launcher_reload_time6", "type": "f32", "offset": 612 },
+				{ "name": "missile_launcher_reload_time7", "type": "f32", "offset": 616 },
+				{ "name": "missile_launcher_reload_time8", "type": "f32", "offset": 620 },
+				{ "name": "missile_launcher_reload_time9", "type": "f32", "offset": 624 },
+				{ "name": "missile_launcher_reload_time10", "type": "f32", "offset": 628 },
+				{ "name": "missile_launcher_reload_time11", "type": "f32", "offset": 632 },
+				{ "name": "missile_launcher_reload_time12", "type": "f32", "offset": 636 },
+				{ "name": "missile_launcher_reload_time13", "type": "f32", "offset": 640 },
+				{ "name": "missile_launcher_reload_time14", "type": "f32", "offset": 644 },
+				{ "name": "missile_launcher_reload_time15", "type": "f32", "offset": 648 },
+				{ "name": "missile_launcher_reload_time16", "type": "f32", "offset": 656 },
+				{ "name": "missile_launcher_reload_time17", "type": "f32", "offset": 656 },
+				{ "name": "missile_launcher_reload_time18", "type": "f32", "offset": 660 }
 			]
 		}
 	},
@@ -180,6 +252,16 @@
 					"results": [
 						{ "name": "limit", "type": "i64" }
 					]
+				},
+				"const_get_shipmissilelaunchercount": {
+					"results": [
+						{ "name": "count", "type": "i32" }
+					]
+				},
+				"const_get_shipmissilelauncherreloadtime": {
+					"results": [
+						{ "name": "reload_time", "type": "i32" }
+					]
 				}
 			}
 		},
@@ -312,32 +394,6 @@
 						{ "name": "ammo", "type": "i32" }
 					]
 				},
-				"debug_sphere_set": {
-					"deprecated": "Use `debug_sphere_create` instead",
-					"args": [
-						{ "name": "x", "type": "f32" },
-						{ "name": "y", "type": "f32" },
-						{ "name": "z", "type": "f32" },
-						{ "name": "radius", "type": "f32" },
-						{ "name": "r", "type": "f32" },
-						{ "name": "g", "type": "f32" },
-						{ "name": "b", "type": "f32" }
-					]
-				},
-				"debug_line_set": {
-					"deprecated": "Use `debug_line_create` instead",
-					"args": [
-						{ "name": "x1", "type": "f32" },
-						{ "name": "y1", "type": "f32" },
-						{ "name": "z1", "type": "f32" },
-						{ "name": "x2", "type": "f32" },
-						{ "name": "y2", "type": "f32" },
-						{ "name": "z2", "type": "f32" },
-						{ "name": "r", "type": "f32" },
-						{ "name": "g", "type": "f32" },
-						{ "name": "b", "type": "f32" }
-					]
-				},
 				"debug_shape_sphere_create": {
 					"args": [
 						{ "name": "x", "type": "f32" },
@@ -374,378 +430,53 @@
 					]
 				},
 				"debug_pause": {
+				},
+				"missilelauncher_trigger": {
+					"args": [
+						{ "name": "index", "type": "i32" }
+					]
+				},
+				"missilelauncher_set_enginetype": {
+					"args": [
+						{ "name": "index", "type": "i32" },
+						{ "name": "engine_type", "type": "i32" }
+					]
+				},
+				"missilelauncher_set_warheadtype": {
+					"args": [
+						{ "name": "index", "type": "i32" },
+						{ "name": "warhead_type", "type": "i32" }
+					]
 				}
 			}
 		},
 		"queries": {
 			"module": "protologic",
 			"functions": {
+				"sharedmemory_set_readaddress": {
+					"args": [
+						{ "name": "addr", "type": "_MainState" },
+						{ "name": "len", "type": "i32" }
+					]
+				},
 				"cpu_get_fuel": {
 					"results": [
 						{ "name": "fuel", "type": "i64" }
 					]
 				},
-				"ship_get_position_x": {
-					"results": [
-						{ "name": "x", "type": "f32" }
-					]
-				},
-				"ship_get_position_y": {
-					"results": [
-						{ "name": "y", "type": "f32" }
-					]
-				},
-				"ship_get_position_z": {
-					"results": [
-						{ "name": "z", "type": "f32" }
-					]
-				},
-				"ship_get_position_ptr": {
-					"args": [
-						{ "name": "dst", "type": "i32", "ptr": "Vector3" }
-					]
-				},
-				"ship_get_velocity_x": {
-					"results": [
-						{ "name": "x", "type": "f32" }
-					]
-				},
-				"ship_get_velocity_y": {
-					"results": [
-						{ "name": "y", "type": "f32" }
-					]
-				},
-				"ship_get_velocity_z": {
-					"results": [
-						{ "name": "z", "type": "f32" }
-					]
-				},
-				"ship_get_velocity_ptr": {
-					"args": [
-						{ "name": "dst", "type": "i32", "ptr": "Vector3" }
-					]
-				},
-				"ship_get_orientation_x": {
-					"results": [
-						{ "name": "x", "type": "f32" }
-					]
-				},
-				"ship_get_orientation_y": {
-					"results": [
-						{ "name": "y", "type": "f32" }
-					]
-				},
-				"ship_get_orientation_z": {
-					"results": [
-						{ "name": "z", "type": "f32" }
-					]
-				},
-				"ship_get_orientation_w": {
-					"results": [
-						{ "name": "w", "type": "f32" }
-					]
-				},
-				"ship_get_orientation_ptr": {
-					"args": [
-						{ "name": "dst", "type": "i32", "ptr": "Quaternion" }
-					]
-				},
-				"ship_get_angularvelocity_x": {
-					"results": [
-						{ "name": "x", "type": "f32" }
-					]
-				},
-				"ship_get_angularvelocity_y": {
-					"results": [
-						{ "name": "y", "type": "f32" }
-					]
-				},
-				"ship_get_angularvelocity_z": {
-					"results": [
-						{ "name": "z", "type": "f32" }
-					]
-				},
-				"ship_get_angularvelocity_ptr": {
-					"args": [
-						{ "name": "dst", "type": "i32", "ptr": "Vector3" }
-					]
-				},
-				"engine_get_fuel_amount": {
-					"results": [
-						{ "name": "fuel", "type": "f32" }
-					]
-				},
-				"engine_get_fuel_capacity": {
-					"results": [
-						{ "name": "capacity", "type": "f32" }
-					]
-				},
-				"engine_get_throttle": {
-					"results": [
-						{ "name": "throttle", "type": "f32" }
-					]
-				},
-				"radar_get_target_count": {
-					"deprecated": "Use `radar_get_contact_count`",
-					"results": [
-						{ "name": "count", "type": "i32" }
-					]
-				},
-				"radar_get_target_distance": {
-					"deprecated": "Use `radar_get_contact_position`",
-					"args": [
-						{ "name": "index", "type": "i32" }
-					],
-					"results": [
-						{ "name": "distance", "type": "f32" }
-					]
-				},
-				"radar_get_target_type": {
-					"deprecated": "Use `radar_get_contact_type`",
-					"args": [
-						{ "name": "index", "type": "i32" }
-					],
-					"results": [
-						{ "name": "type", "type": "i32" }
-					]
-				},
-				"radar_get_target_id": {
-					"deprecated": "Use `radar_get_contact_id`",
-					"args": [
-						{ "name": "index", "type": "i32" }
-					],
-					"results": [
-						{ "name": "id", "type": "i64" }
-					]
-				},
-				"radar_get_target_info": {
-					"deprecated": "Use `radar_get_contact_info`",
-					"args": [
-						{ "name": "index", "type": "i32" },
-						{ "name": "ptr", "type": "i32", "ptr": "RadarTargetInfo" }
-					]
-				},
-				"radar_get_target_list": {
-					"deprecated": "Use `radar_get_contact_list`",
-					"args": [
-						{ "name": "ptr", "type": "i32", "ptr": "RadarTargetInfo", "ptrCount": "len" },
-						{ "name": "len", "type": "i32" }
-					]
-				},
-				"radar_get_noise": {
-					"results": [
-						{ "name": "noise", "type": "f32" }
-					]
-				},
-				"radar_get_contact_count": {
-					"results": [
-						{ "name": "count", "type": "i32" }
-					]
-				},
-				"radar_get_contact_type": {
-					"args": [
-						{ "name": "index", "type": "i32" }
-					],
-					"results": [
-						{ "name": "id", "type": "i32" }
-					]
-				},
-				"radar_get_contact_id": {
-					"args": [
-						{ "name": "index", "type": "i32" }
-					],
-					"results": [
-						{ "name": "id", "type": "i64" }
-					]
-				},
-				"radar_get_contact_strength": {
-					"args": [
-						{ "name": "index", "type": "i32" }
-					],
-					"results": [
-						{ "name": "strength", "type": "f32" }
-					]
-				},
-				"radar_get_contact_position_x": {
-					"args": [
-						{ "name": "index", "type": "i32" }
-					],
-					"results": [
-						{ "name": "x", "type": "f32" }
-					]
-				},
-				"radar_get_contact_position_y": {
-					"args": [
-						{ "name": "index", "type": "i32" }
-					],
-					"results": [
-						{ "name": "y", "type": "f32" }
-					]
-				},
-				"radar_get_contact_position_z": {
-					"args": [
-						{ "name": "index", "type": "i32" }
-					],
-					"results": [
-						{ "name": "z", "type": "f32" }
-					]
-				},
-				"radar_get_contact_position_ptr": {
-					"args": [
-						{ "name": "index", "type": "i32" },
-						{ "name": "dst", "type": "i32", "ptr": "Vector3" }
-					]
-				},
 				"radar_get_contact_info": {
 					"args": [
 						{ "name": "index", "type": "i32" },
-						{ "name": "dst", "type": "i32", "ptr": "RadarContactInfo" }
+						{ "name": "dst", "type": "RadarContactInfo" }
 					]
 				},
 				"radar_get_contact_list": {
 					"args": [
-						{ "name": "ptr", "type": "i32", "ptr": "RadarContactInfo", "ptrCount": "len" },
-						{ "name": "len", "type": "i32" }
-					]
-				},
-				"gun0_get_bearing": {
+						{ "name": "dest", "type": "RadarContactInfo", "count": "destCount" },
+						{ "name": "destCount", "type": "i32" }
+					],
 					"results": [
-						{ "name": "bearing", "type": "f32" }
-					]
-				},
-				"gun0_get_elevation": {
-					"results": [
-						{ "name": "elevation", "type": "f32" }
-					]
-				},
-				"gun0_get_refiretime": {
-					"results": [
-						{ "name": "refire_time", "type": "f32" }
-					]
-				},
-				"gun0_get_magazine_capacity": {
-					"results": [
-						{ "name": "capacity", "type": "i32" }
-					]
-				},
-				"gun0_get_magazine_remaining": {
-					"results": [
-						{ "name": "remaining", "type": "i32" }
-					]
-				},
-				"gun0_get_magazine_type": {
-					"results": [
-						{ "name": "type", "type": "i32" }
-					]
-				},
-				"gun0_get_magazine_reloadtime": {
-					"results": [
-						{ "name": "time", "type": "f32" }
-					]
-				},
-				"gun1_get_bearing": {
-					"results": [
-						{ "name": "bearing", "type": "f32" }
-					]
-				},
-				"gun1_get_elevation": {
-					"results": [
-						{ "name": "elevation", "type": "f32" }
-					]
-				},
-				"gun1_get_refiretime": {
-					"results": [
-						{ "name": "refire_time", "type": "f32" }
-					]
-				},
-				"gun1_get_magazine_capacity": {
-					"results": [
-						{ "name": "capacity", "type": "i32" }
-					]
-				},
-				"gun1_get_magazine_remaining": {
-					"results": [
-						{ "name": "remaining", "type": "i32" }
-					]
-				},
-				"gun1_get_magazine_type": {
-					"results": [
-						{ "name": "type", "type": "i32" }
-					]
-				},
-				"gun1_get_magazine_reloadtime": {
-					"results": [
-						{ "name": "time", "type": "f32" }
-					]
-				},
-				"gun2_get_bearing": {
-					"results": [
-						{ "name": "bearing", "type": "f32" }
-					]
-				},
-				"gun2_get_elevation": {
-					"results": [
-						{ "name": "elevation", "type": "f32" }
-					]
-				},
-				"gun2_get_refiretime": {
-					"results": [
-						{ "name": "refire_time", "type": "f32" }
-					]
-				},
-				"gun2_get_magazine_capacity": {
-					"results": [
-						{ "name": "capacity", "type": "i32" }
-					]
-				},
-				"gun2_get_magazine_remaining": {
-					"results": [
-						{ "name": "remaining", "type": "i32" }
-					]
-				},
-				"gun2_get_magazine_type": {
-					"results": [
-						{ "name": "type", "type": "i32" }
-					]
-				},
-				"gun2_get_magazine_reloadtime": {
-					"results": [
-						{ "name": "time", "type": "f32" }
-					]
-				},
-				"gun3_get_bearing": {
-					"results": [
-						{ "name": "bearing", "type": "f32" }
-					]
-				},
-				"gun3_get_elevation": {
-					"results": [
-						{ "name": "elevation", "type": "f32" }
-					]
-				},
-				"gun3_get_refiretime": {
-					"results": [
-						{ "name": "refire_time", "type": "f32" }
-					]
-				},
-				"gun3_get_magazine_capacity": {
-					"results": [
-						{ "name": "capacity", "type": "i32" }
-					]
-				},
-				"gun3_get_magazine_remaining": {
-					"results": [
-						{ "name": "remaining", "type": "i32" }
-					]
-				},
-				"gun3_get_magazine_type": {
-					"results": [
-						{ "name": "type", "type": "i32" }
-					]
-				},
-				"gun3_get_magazine_reloadtime": {
-					"results": [
-						{ "name": "time", "type": "f32" }
+						{ "name": "count", "type": "i32" }
 					]
 				}
 			}

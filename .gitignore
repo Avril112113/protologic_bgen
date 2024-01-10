@@ -1,2 +1,7 @@
-.idea/**
-**/__pycache__/**
+# PyCharm stuff.
+/.idea/
+# Python cached imports.
+**/__pycache__/
+
+# Used during development, isn't actually used by bgen.
+/tmp/
