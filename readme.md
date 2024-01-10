@@ -3,9 +3,9 @@ Un-official protologic bindings generator.
 
 ### Supports
 ~~Rust - [Protologic/Protologic.rs](https://github.com/Protologic/Protologic.rs)~~ (Not used by this repo yet?)  
-C/C++ - [Avril112113/???](https://github.com/Avril112113/) (Repo not yet available)  
-Lua - [Avril112113/protologic-lua](https://github.com/Avril112113/protologic-lua)  
+C/C++ - [Avril112113/protologic-tool-c_cpp](https://github.com/Avril112113/protologic-tool-c_cpp) (Repo not yet available)  
 AssemblyScript - [Avril112113/protologic-tool-assemblyscript](https://github.com/Avril112113/protologic-tool-assemblyscript)  
+Lua - [Avril112113/protologic-lua](https://github.com/Avril112113/protologic-lua)  
 
 ### Updating the bindings
 Currently, `protologic_bindings.json` is manually managed.  
@@ -18,6 +18,8 @@ Support indexed QuickState field types, to allow for, eg `gun_bearing(2)`.
 Re-add Lua bindings.  
 Create QuickJS bindings.  
 Create Python bindings.  
+Generate WIT file.  
+Create C# bindings.  
 
 
 ## Credits
