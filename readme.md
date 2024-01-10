@@ -3,7 +3,7 @@ Un-official protologic bindings generator.
 
 ### Supports
 ~~Rust - [Protologic/Protologic.rs](https://github.com/Protologic/Protologic.rs)~~ (Not used by this repo yet?)  
-C/C++ - [Avril112113/protologic-tool-c_cpp](https://github.com/Avril112113/protologic-tool-c_cpp) (Repo not yet available)  
+C/C++ - [Avril112113/protologic-tool-c_cpp](https://github.com/Avril112113/protologic-tool-c_cpp)  
 AssemblyScript - [Avril112113/protologic-tool-assemblyscript](https://github.com/Avril112113/protologic-tool-assemblyscript)  
 Lua - [Avril112113/protologic-lua](https://github.com/Avril112113/protologic-lua)  
 
