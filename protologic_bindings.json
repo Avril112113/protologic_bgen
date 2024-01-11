@@ -464,12 +464,6 @@
 						{ "name": "fuel", "type": "i64" }
 					]
 				},
-				"radar_get_contact_info": {
-					"args": [
-						{ "name": "index", "type": "i32" },
-						{ "name": "dst", "type": "RadarContactInfo" }
-					]
-				},
 				"radar_get_contact_list": {
 					"args": [
 						{ "name": "dest", "type": "RadarContactInfo", "count": "destCount" },

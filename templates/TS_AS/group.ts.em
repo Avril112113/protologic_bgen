@@ -14,7 +14,6 @@ import {@(struct.name)} from "./@(struct.name)";
 
 
 @[ for function in group ]@
-@[ if function.hasCountArg ]@[ continue ]@[ end if ]@
 // @@ts-ignore
 @@external("@(group.module)", "@(function.name)")
 declare function _internal_@(function.name)(@
@@ -41,15 +40,26 @@ StaticArray<u8>@
 export function @(function.name)(@
 @[ for i in range(len(function.args)) ]@
 @{ arg = function.args[i] }@
-@(", " if i > 0 else "")@(arg.name): @(retype(arg))@
+@(", " if i > 0 else "")@(arg.name): @(retype(arg) + ("[]" if arg.count else ""))@
 @[ end for ]@
 ): @(retype(function.getResult(0))) {
+@	@[ for i in range(len(function.args)) ]@
+@	@{ arg = function.args[i] }@
+@	@[ if arg.count ]@
+	let @(arg.name)_data = new StaticArray<u8>(@(retype(arg)).DATA_SIZE * @(arg.count));
+	for (let i = 0; i < @(arg.count); i++) {
+		@(arg.name)[i] = new RadarContactInfo(@(arg.name)_data, i*@(retype(arg)).DATA_SIZE);
+	}
+@	@[ end if ]@
+@	@[ end for ]@
 	return _internal_@(function.name)(@
 @	@[ for i in range(len(function.args)) ]@
 @	@{ arg = function.args[i] }@
 @	@(", " if i > 0 else "")@
 @	@(arg.name)@
-@	@[ if not isinstance(arg.type, WasmType) ]@
+@	@[ if arg.count ]@
+@	_data@
+@	@[ elif not isinstance(arg.type, WasmType) ]@
 @	.data@
 @	@[ end if ]@
 @	@[ end for ]@
