@@ -9,7 +9,12 @@ import {@(depStruct.name)} from "./@(depStruct.name)";
 
 
 let _data: @(struct.name) = new @(struct.name)();
-@(quickstate.init_function.name)(_data, @(struct.name).DATA_SIZE);
+
+// Used by sched_yield() to make things happy... It was angry for some reason...
+export function __internal_init_@(struct.name)(): void {
+	@(quickstate.init_function.name)(_data, @(struct.name).DATA_SIZE);
+}
+__internal_init_@(struct.name)();
 
 export class @(quickstate.name) {
 @	@[ for field in struct.fields.values() ]@

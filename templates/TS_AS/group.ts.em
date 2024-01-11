@@ -5,6 +5,20 @@
 @[ for struct in group.getUsedStructs() ]@
 import {@(struct.name)} from "./@(struct.name)";
 @[ end for ]@
+@[ if group.name == "wasi" ]@
+@[ for struct in bindings.structs.values() ]@
+@[ if struct.quickstate ]@
+import {__internal_init_@(struct.name)} from "./@(struct.quickstate.name)";
+@[ end if ]@
+@[ end for ]@
+@[ def call_inits() ]@
+@[ for struct in bindings.structs.values() ]@
+@[ if struct.quickstate ]@
+	__internal_init_@(struct.name)();
+@[ end if ]@
+@[ end for ]@
+@[ end def ]@
+@[ end if ]@
 
 
 // @( group.name ).ts
@@ -52,6 +66,7 @@ export function @(function.name)(@
 	}
 @	@[ end if ]@
 @	@[ end for ]@
+@	@[ if group.name == "wasi" and function.name == "sched_yield" ]@ @(call_inits())@ @[ end if ]@
 	return _internal_@(function.name)(@
 @	@[ for i in range(len(function.args)) ]@
 @	@{ arg = function.args[i] }@
